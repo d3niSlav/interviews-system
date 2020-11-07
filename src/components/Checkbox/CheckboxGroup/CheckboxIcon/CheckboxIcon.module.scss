@@ -1,0 +1,38 @@
+.icon {
+  display: inline-flex;
+  align-items: center;
+  width: 24px;
+  vertical-align: middle;
+
+  svg {
+    cursor: pointer;
+
+    path {
+      transition: stroke 0.2s, opacity 0.2s, stroke-width 0.2s;
+    }
+
+    &:hover path[id=outline] {
+      stroke: #1F3E8C;
+      stroke-width: 1;
+    }
+  }
+}
+
+.checked {
+  path[id=check] {
+    opacity: 1;
+  }
+
+  path[id=check-outline] {
+    opacity: 1;
+  }
+
+  path[id=outline] {
+    opacity: 0;
+    stroke-width: 1;
+  }
+
+  &:hover path[id=check-outline] {
+    stroke: #1F3E8C;
+  }
+}

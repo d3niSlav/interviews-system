@@ -1,0 +1,21 @@
+.option {
+  display: block;
+
+  &.inline {
+    display: inline-block;
+  }
+}
+
+.label {
+  display: inline-block;
+  padding: 8px 6px 7px 2px;
+  color: #7f848c;
+  font-size: 0.825rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  vertical-align: middle;
+
+  &.selected {
+    color: #ffffff;
+  }
+}

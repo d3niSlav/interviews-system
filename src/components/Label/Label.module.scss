@@ -1,0 +1,49 @@
+.text,
+.title {
+  margin: 0;
+  padding: 0 6px;
+  height: 20px;
+  color: #ffffff;
+  font-size: 0.825rem;
+}
+
+.title {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.errorMessage {
+  position: relative;
+  width: 100%;
+  min-height: 24px;
+  margin: 2px 0 0;
+  padding: 0 6px;
+  line-height: 1.2;
+  color: #ff3e3e;
+  font-size: 0.625rem;
+  text-align: left;
+  word-break: break-word;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.label {
+  display: inline-block;
+  text-align: left;
+
+  &.fullWidth {
+    display: block;
+    width: 100%;
+  }
+
+  &.large {
+    .text,
+    .title {
+      font-size: 1rem;
+    }
+
+    .errorMessage {
+      font-size: 0.75rem;
+    }
+  }
+}
