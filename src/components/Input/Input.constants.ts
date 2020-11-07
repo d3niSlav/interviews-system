@@ -14,6 +14,7 @@ export type BaseInputProps = {
   disabled?: boolean;
   error?: string | boolean;
   fullWidth?: boolean;
+  id?: string;
   name?: string;
   onBlur?: FocusEventHandler<HTMLElement>;
   onChange?: ChangeEventHandler<HTMLElement>;

@@ -6,6 +6,11 @@ export type SelectProps = ReactSelectProps & {
   noOptionsText?: string;
 };
 
+export type SelectOption = {
+  label: string;
+  value: string;
+};
+
 export const getSelectCSSPropertiesOverrides = (menuIsOpen = false, isFocused = false, hasErrors = false): Props => {
   const borderColor = menuIsOpen ? '#1a1721' : hasErrors ? '#ff3e3e' : isFocused ? '#1d60ff' : '#6d7381';
 

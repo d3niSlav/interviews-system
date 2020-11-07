@@ -19,6 +19,7 @@ const CheckboxGroup: FunctionComponent<CheckboxGroupProps> = ({
   name,
   onChange,
   options = [],
+  required,
   size,
   title,
 }) => {
@@ -85,6 +86,7 @@ const CheckboxGroup: FunctionComponent<CheckboxGroupProps> = ({
       fullWidth={fullWidth}
       size={size}
       groupedElement={options?.length > 1}
+      required={required}
     >
       {content}
     </Label>

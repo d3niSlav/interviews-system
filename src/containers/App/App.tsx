@@ -1,11 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-import Button from '../../components/Button';
-import { CheckboxGroup } from '../../components/Checkbox';
-import RadioButtons from '../../components/RadioButtons';
-import Select from '../../components/Select';
-import TextArea from '../../components/TextArea';
-import TextInput from '../../components/TextInput';
+import Form from '../../components/Form';
 
 import './App.scss';
 
@@ -13,31 +8,59 @@ const App: FunctionComponent = () => (
   <div className="App">
     <header className="App-header">
       <div style={{ width: '300px' }}>
-        <TextInput placeholder="Seven 11" title="Text input" />
-        <TextArea placeholder="Seven 11" title="Text area" rows={5} />
-        <Select placeholder="Seven 11" title="Select" options={[{ value: '55612', label: '55612' }]} />
-        <CheckboxGroup
-          inline
-          title="Checkbox group"
-          name="checkboxes"
-          options={[
-            { label: 'Choice 1', name: 'choice-1' },
-            { label: 'Choice 2', name: 'choice-2', value: true },
-            { label: 'Choice 3', name: 'choice-3' },
-          ]}
+        <Form
+          id="example-form"
+          errors={{}}
+          initialValues={{}}
+          config={{
+            textInput: {
+              label: 'Text input field',
+              placeholder: 'Enter some text...',
+              fieldType: 'text',
+              validations: {
+                required: {
+                  errorText: `This field is required!`,
+                },
+              },
+            },
+            textArea: {
+              label: 'Text area field',
+              placeholder: 'Enter some long text...',
+              fieldType: 'textarea',
+              rows: 5,
+            },
+            select: {
+              label: 'Select field',
+              placeholder: 'Choose an option...',
+              fieldType: 'select',
+              options: [{ value: '55612', label: '55612' }],
+            },
+            radio: {
+              label: 'Radio buttons field',
+              placeholder: 'Choose an option...',
+              fieldType: 'radio',
+              inline: true,
+              value: 'option-1',
+              options: [
+                { value: 'option-1', label: 'Option 1' },
+                { value: 'option-2', label: 'Option 2' },
+                { value: 'option-3', label: 'Option 3' },
+              ],
+            },
+            checkboxes: {
+              label: 'Checkboxes field',
+              placeholder: 'Choose an option...',
+              fieldType: 'checkbox',
+              inline: true,
+              options: [
+                { value: 'option-1', label: 'Option 1' },
+                { value: 'option-2', label: 'Option 2' },
+                { value: 'option-3', label: 'Option 3' },
+              ],
+            },
+          }}
+          onSubmit={(data): void => alert(JSON.stringify(data, null, '\t'))}
         />
-        <RadioButtons
-          title="Radio buttons group"
-          name="radio-buttons"
-          inline
-          options={[
-            { label: 'Option 1', value: 'option-1' },
-            { label: 'Option 2', value: 'option-2' },
-            { label: 'Option 3', value: 'option-3' },
-          ]}
-          size="medium"
-        />
-        <Button text="Cancel" outlined />
       </div>
     </header>
   </div>

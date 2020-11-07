@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
+import React, { ChangeEvent, FunctionComponent, KeyboardEvent, useEffect, useState } from 'react';
 
 import RadioButtonIcon from './RadioButtonIcon';
 import { RadioButtonOption, RadioButtonsProps } from './RadioButtons.constants';
@@ -16,6 +16,7 @@ const RadioButtons: FunctionComponent<RadioButtonsProps> = ({
   onBlur,
   onChange,
   options = [] as RadioButtonOption[],
+  required,
   size,
   title,
   value,
@@ -36,7 +37,6 @@ const RadioButtons: FunctionComponent<RadioButtonsProps> = ({
   }, [hasFirstOptionAsDefault, options, value]);
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    event.persist();
     setSelectedValue(event.target.value);
     onChange && onChange(event);
   };
@@ -49,8 +49,24 @@ const RadioButtons: FunctionComponent<RadioButtonsProps> = ({
       labelClasses.push(styles.selected);
     }
 
+    const handleKeyPress = (event: KeyboardEvent<HTMLLabelElement>): void => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (event.key === 'Enter') {
+        const currentValue = radioValue.toString();
+        setSelectedValue(currentValue);
+        onChange && onChange({ target: { name, value: currentValue } } as ChangeEvent<HTMLInputElement>);
+      }
+    };
+
     return (
-      <label key={`${name}-${index}`} className={radioButtonsOptionClasses.join(' ')}>
+      <label
+        tabIndex={0}
+        onKeyPress={handleKeyPress}
+        key={`${name}-${index}`}
+        className={radioButtonsOptionClasses.join(' ')}
+      >
         <input
           hidden
           type="radio"
@@ -78,6 +94,7 @@ const RadioButtons: FunctionComponent<RadioButtonsProps> = ({
       fullWidth={fullWidth}
       size={size}
       groupedElement={options?.length > 1}
+      required={required}
     >
       {content}
     </Label>

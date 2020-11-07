@@ -9,13 +9,14 @@
   border-bottom: 2px solid #6d7381;
   outline: none;
   box-sizing: border-box;
-  transition: border-color 0.3s, box-shadow 0.2s;
+  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.2s;
 
   &:disabled {
     cursor: not-allowed;
   }
 
   &:focus {
+    background-color: #1a1721;
     border-color: #1d60ff;
     box-shadow: 0 4px 11px 0 rgba(0, 0, 0, 0.12);
   }

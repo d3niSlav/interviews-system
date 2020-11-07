@@ -8,6 +8,7 @@ const Label: FunctionComponent<LabelProps> = ({
   error,
   fullWidth = false,
   groupedElement = false,
+  required = false,
   size,
   title,
   children,
@@ -30,7 +31,12 @@ const Label: FunctionComponent<LabelProps> = ({
 
   return (
     <LabelWrappingElement className={labelClasses.join(' ')}>
-      {title && <p className={styles.title}>{title}</p>}
+      {title && (
+        <p className={styles.title}>
+          {title}
+          {required && <span className={styles.requiredIndicator}>&nbsp;*</span>}
+        </p>
+      )}
       {element}
       <p className={styles.errorMessage}>{error}</p>
     </LabelWrappingElement>

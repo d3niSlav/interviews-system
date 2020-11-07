@@ -7,13 +7,20 @@ import Label from '../Label';
 const TextArea: FunctionComponent<TextAreaProps> = ({
   error,
   fullWidth = true,
+  required,
   rows = 2,
   size,
   title,
   ...inputProps
 }) => (
-  <Label title={title} error={typeof error === 'string' ? error : ''} fullWidth={fullWidth} size={size}>
-    <Input {...inputProps} rows={rows} inputComponent="textarea" error={error} size={size} />
+  <Label
+    title={title}
+    error={typeof error === 'string' ? error : ''}
+    fullWidth={fullWidth}
+    size={size}
+    required={required}
+  >
+    <Input {...inputProps} rows={rows} inputComponent="textarea" error={error} size={size} required={required} />
   </Label>
 );
 

@@ -1,0 +1,7 @@
+.formActions {
+  display: flex;
+
+  > button:not(:last-child) {
+    margin-right: 15px;
+  }
+}

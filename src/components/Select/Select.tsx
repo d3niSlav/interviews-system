@@ -20,6 +20,7 @@ const Select: FunctionComponent<SelectProps> = ({
   onChange,
   options = [],
   placeholder,
+  required,
   title,
   value,
 }) => {
@@ -34,7 +35,7 @@ const Select: FunctionComponent<SelectProps> = ({
   };
 
   return (
-    <Label error={errorMessage} title={title} fullWidth>
+    <Label error={errorMessage} title={title} fullWidth required={required}>
       <div className={styles.selectWrapper}>
         <ReactSelect
           styles={selectStyles}
@@ -47,6 +48,7 @@ const Select: FunctionComponent<SelectProps> = ({
           name={name}
           options={options}
           placeholder={placeholder}
+          required={required}
           noOptionsMessage={noOptionsText ? getNoOptionsText : noOptionsMessage}
           value={value}
           onChange={onChange}
