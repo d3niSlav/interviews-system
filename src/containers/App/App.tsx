@@ -49,7 +49,6 @@ const App: FunctionComponent = () => (
             },
             checkboxes: {
               label: 'Checkboxes field',
-              placeholder: 'Choose an option...',
               fieldType: 'checkbox',
               inline: true,
               options: [
@@ -57,6 +56,11 @@ const App: FunctionComponent = () => (
                 { value: 'option-2', label: 'Option 2' },
                 { value: 'option-3', label: 'Option 3' },
               ],
+            },
+            checkbox: {
+              title: 'Checkbox field',
+              label: 'Option text',
+              fieldType: 'checkbox',
             },
           }}
           onSubmit={(data): void => alert(JSON.stringify(data, null, '\t'))}

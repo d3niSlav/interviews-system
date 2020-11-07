@@ -46,7 +46,7 @@ const CheckboxField: FunctionComponent<CheckboxFieldProps> = ({ control, inputCh
       };
     });
   } else {
-    checkboxOptions = [{ name, value: value || false }];
+    checkboxOptions = [{ label: label, name, value: value || false }];
   }
 
   return (

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
+import React, { ChangeEvent, FunctionComponent, KeyboardEvent, useEffect, useState } from 'react';
 
 import { CheckboxGroupProps } from './CheckboxGroup.constants';
 import CheckboxIcon from './CheckboxIcon';
@@ -58,8 +58,35 @@ const CheckboxGroup: FunctionComponent<CheckboxGroupProps> = ({
       labelClasses.push(styles.checked);
     }
 
+    const handleKeyPress = (event: KeyboardEvent<HTMLLabelElement>): void => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const currentValue = !inputsChecked[checkboxName];
+
+      if (event.key === 'Enter') {
+        setInputsChecked({
+          ...inputsChecked,
+          [checkboxName]: currentValue,
+        });
+
+        onChange &&
+          onChange({
+            target: {
+              name: checkboxName,
+              checked: currentValue,
+            },
+          } as ChangeEvent<HTMLInputElement>);
+      }
+    };
+
     return (
-      <label key={`${name}-${checkboxName}`} className={checkboxOptionClasses.join(' ')}>
+      <label
+        tabIndex={0}
+        onKeyPress={handleKeyPress}
+        key={`${name}-${checkboxName}`}
+        className={checkboxOptionClasses.join(' ')}
+      >
         <input
           hidden
           type="checkbox"
