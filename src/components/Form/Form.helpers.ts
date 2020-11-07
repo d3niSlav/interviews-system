@@ -33,6 +33,10 @@ export const getErrorMessage = (value?: FormValue, validations?: FormControlVali
       if (validations.required && value.length === 0) {
         errorMessage = validations.required.errorText;
       }
+    } else if (typeof value === 'boolean') {
+      if (validations.required && !value) {
+        errorMessage = validations.required.errorText;
+      }
     }
   }
 
