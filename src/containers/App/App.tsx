@@ -1,11 +1,13 @@
 import React, { FunctionComponent } from 'react';
 
 import Form from '../../components/Form';
+import Navigation from '../../components/Navigation';
 
 import './App.scss';
 
 const App: FunctionComponent = () => (
-  <div className="App">
+  <>
+    <Navigation />
     <header className="App-header">
       <div style={{ width: '300px' }}>
         <Form
@@ -67,7 +69,7 @@ const App: FunctionComponent = () => (
         />
       </div>
     </header>
-  </div>
+  </>
 );
 
 export default App;

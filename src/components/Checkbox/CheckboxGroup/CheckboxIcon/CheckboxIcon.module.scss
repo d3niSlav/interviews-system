@@ -1,3 +1,22 @@
+.checked {
+  path[id='check'] {
+    opacity: 1;
+  }
+
+  path[id='check-outline'] {
+    opacity: 1;
+  }
+
+  path[id='outline'] {
+    opacity: 0;
+    stroke-width: 1;
+  }
+
+  &:hover path[id='check-outline'] {
+    stroke: #1f3e8c;
+  }
+}
+
 .icon {
   display: inline-flex;
   align-items: center;
@@ -11,28 +30,9 @@
       transition: stroke 0.2s, opacity 0.2s, stroke-width 0.2s;
     }
 
-    &:hover path[id=outline] {
-      stroke: #1F3E8C;
+    &:hover path[id='outline'] {
+      stroke: #1f3e8c;
       stroke-width: 1;
     }
-  }
-}
-
-.checked {
-  path[id=check] {
-    opacity: 1;
-  }
-
-  path[id=check-outline] {
-    opacity: 1;
-  }
-
-  path[id=outline] {
-    opacity: 0;
-    stroke-width: 1;
-  }
-
-  &:hover path[id=check-outline] {
-    stroke: #1F3E8C;
   }
 }

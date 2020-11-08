@@ -30,5 +30,15 @@ module.exports = {
       },
     ],
     'selector-class-pattern': null,
-  },
+    'selector-no-qualifying-type': [
+      true,
+      {
+        'ignore': [
+          'attribute',
+          'class',
+          'id',
+        ],
+      },
+    ],
+},
 };
