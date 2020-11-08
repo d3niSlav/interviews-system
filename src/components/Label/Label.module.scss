@@ -1,26 +1,26 @@
 .text,
 .title {
   margin: 0;
-  padding: 0 6px;
-  height: 20px;
+  padding: 0 7px;
+  height: 22px;
   color: #ffffff;
-  font-size: 0.825rem;
+  font-size: 1rem;
 }
 
 .title {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 600;
 }
 
 .errorMessage {
   position: relative;
   width: 100%;
-  min-height: 24px;
+  min-height: 26px;
   margin: 2px 0 0;
-  padding: 0 6px;
+  padding: 2px 7px 0;
   line-height: 1.2;
   color: #ff3e3e;
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   text-align: left;
   word-break: break-word;
   overflow: hidden;
@@ -44,10 +44,6 @@
     .text,
     .title {
       font-size: 1rem;
-    }
-
-    .errorMessage {
-      font-size: 0.75rem;
     }
   }
 }

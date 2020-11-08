@@ -15,12 +15,14 @@
 .icon {
   display: inline-flex;
   align-items: center;
-  width: 20px;
+  width: 28px;
   margin-top: 1px;
   vertical-align: middle;
 
   svg {
     cursor: pointer;
+    width: 100%;
+    height: 100%;
 
     circle,
     ellipse {

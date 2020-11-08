@@ -35,7 +35,11 @@ const App: FunctionComponent = () => (
               label: 'Select field',
               placeholder: 'Choose an option...',
               fieldType: 'select',
-              options: [{ value: '55612', label: '55612' }],
+              options: [
+                { value: 'option-1', label: 'Option 1' },
+                { value: 'option-2', label: 'Option 2' },
+                { value: 'option-3', label: 'Option 3' },
+              ],
             },
             radio: {
               label: 'Radio buttons field',

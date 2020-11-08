@@ -12,19 +12,20 @@ export type SelectOption = {
 };
 
 export const getSelectCSSPropertiesOverrides = (menuIsOpen = false, isFocused = false, hasErrors = false): Props => {
-  const borderColor = menuIsOpen ? '#1a1721' : hasErrors ? '#ff3e3e' : isFocused ? '#1d60ff' : '#6d7381';
+  const borderColor = menuIsOpen ? '#27262e' : hasErrors ? '#ff3e3e' : isFocused ? '#1d60ff' : '#6d7381';
 
   return {
     borderRadius: 0,
     border: 0,
     borderBottom: `2px solid ${borderColor}`,
     borderColor,
-    backgroundColor: menuIsOpen ? '#1a1721' : 'transparent',
+    backgroundColor: menuIsOpen || isFocused ? '#27262e' : 'transparent',
     boxShadow: menuIsOpen || isFocused ? '0 4px 11px 0 rgba(0, 0, 0, 0.12)' : 'none',
     transition: 'border-color 0.2s',
     '&:hover': {
-      borderColor: menuIsOpen ? '#1a1721' : hasErrors ? '#a40000' : '#1f3e8c',
+      borderColor: menuIsOpen ? '#27262e' : hasErrors ? '#a40000' : '#1f3e8c',
     },
+    cursor: 'pointer',
   };
 };
 
@@ -32,7 +33,7 @@ export const SELECT_CUSTOM_STYLES: StylesConfig = {
   singleValue: (provided) => ({
     ...provided,
     color: '#ffffff',
-    fontSize: '0.8rem',
+    fontSize: '1rem',
   }),
   dropdownIndicator: (provided) => ({
     ...provided,
@@ -46,7 +47,7 @@ export const SELECT_CUSTOM_STYLES: StylesConfig = {
   clearIndicator: (provided) => ({
     ...provided,
     color: '#b4b6bb',
-    fontSize: '0.8rem',
+    fontSize: '1rem',
     cursor: 'pointer',
     transition: 'color 0.2s',
     '&:hover': {
@@ -66,29 +67,33 @@ export const SELECT_CUSTOM_STYLES: StylesConfig = {
     ...provided,
     margin: 0,
     color: '#ffffff',
-    fontSize: '0.8rem',
+    fontSize: '1rem',
     border: 'solid 1px #3a3e4f',
     borderRadius: 0,
-    boxShadow: '0 2px 14px 0 rgba(25, 22, 32, 0.52), 0 2px 4px 0 rgba(0, 0, 0, 0.5)',
+    boxShadow: '0 2px 15px 0 rgba(25, 22, 32, 0.52), 0 2px 4px 0 rgba(0, 0, 0, 0.5)',
     backgroundColor: '#28272f',
+  }),
+  menuList: (provided) => ({
+    ...provided,
+    padding: 0,
   }),
   multiValue: (provided) => ({
     ...provided,
-    borderRadius: '12px',
+    borderRadius: '13px',
     backgroundColor: '#515562',
   }),
   multiValueLabel: (provided) => ({
     ...provided,
-    paddingLeft: '10px',
+    paddingLeft: '11px',
     color: '#ffffff',
-    fontSize: '0.8rem',
+    fontSize: '1rem',
   }),
   multiValueRemove: (provided) => ({
     ...provided,
     marginLeft: '2px',
     paddingLeft: '2px',
-    paddingRight: '10px',
-    borderRadius: '0 12px 12px 0',
+    paddingRight: '11px',
+    borderRadius: '0 13px 13px 0',
     color: '#ffffff',
     cursor: 'pointer',
     transition: 'background-color 0.2s',
@@ -99,12 +104,14 @@ export const SELECT_CUSTOM_STYLES: StylesConfig = {
   }),
   option: (provided, state) => ({
     ...provided,
+    padding: '10px 6px',
     backgroundColor: state.isFocused ? '#23232a' : state.isSelected ? '#1a1721' : provided.backgroundColor,
     transition: 'background-color 0.2s',
+    cursor: 'pointer',
   }),
   placeholder: (provided) => ({
     ...provided,
     color: '#7f848c',
-    fontSize: '12px',
+    fontSize: '14px',
   }),
 };
