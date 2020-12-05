@@ -52,6 +52,8 @@ const Select: FunctionComponent<SelectProps> = ({
           noOptionsMessage={noOptionsText ? getNoOptionsText : noOptionsMessage}
           value={value}
           onChange={onChange}
+          openMenuOnFocus={true}
+          tabSelectsValue={false}
         />
       </div>
     </Label>

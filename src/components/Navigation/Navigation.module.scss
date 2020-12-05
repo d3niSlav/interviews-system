@@ -14,6 +14,10 @@
 
   &:hover {
     color: #1d60ff;
+
+    svg path {
+      fill: #1d60ff;
+    }
   }
 
   &.active {
@@ -115,6 +119,10 @@
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
 
+  .iconWrapper {
+    padding: 3px;
+  }
+
   .iconWrapper,
   .iconWrapper > svg {
     width: 100%;
@@ -136,24 +144,26 @@
 .bottomNavigation {
   bottom: 0;
 
-  .navLinkBox .iconWrapper::after {
-    content: '';
-    position: absolute;
-    right: 9px;
-    bottom: 12px;
-    width: 0;
-    height: 0;
-    border-bottom: 6px solid transparent;
-    border-left: 6px solid transparent;
-    transition: border-bottom-color 0.3s ease;
-  }
+  .navLinkBox {
+    .iconWrapper:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 9px;
+      bottom: 12px;
+      width: 0;
+      height: 0;
+      border-bottom: 6px solid transparent;
+      border-left: 6px solid transparent;
+      transition: border-bottom-color 0.3s ease;
+    }
 
-  &:hover .iconWrapper::after {
-    border-bottom-color: #1d60ff;
-  }
+    &:hover .iconWrapper::after {
+      border-bottom-color: #1d60ff;
+    }
 
-  &:hover .navLinkOptions {
-    opacity: 1;
-    pointer-events: all;
+    &:hover .navLinkOptions {
+      opacity: 1;
+      pointer-events: all;
+    }
   }
 }

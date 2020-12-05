@@ -21,11 +21,11 @@ export const getSelectCSSPropertiesOverrides = (menuIsOpen = false, isFocused = 
     borderColor,
     backgroundColor: menuIsOpen || isFocused ? '#27262e' : 'transparent',
     boxShadow: menuIsOpen || isFocused ? '0 4px 11px 0 rgba(0, 0, 0, 0.12)' : 'none',
-    transition: 'border-color 0.2s',
+    cursor: 'pointer',
+    transition: 'background-color 0.2s, border-color 0.2s',
     '&:hover': {
       borderColor: menuIsOpen ? '#27262e' : hasErrors ? '#a40000' : '#1f3e8c',
     },
-    cursor: 'pointer',
   };
 };
 
