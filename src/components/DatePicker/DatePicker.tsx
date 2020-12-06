@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
 import ReactDatePicker from 'react-datepicker';
 
 import { DatePickerProps, DEFAULT_DATE_FORMAT } from './DatePicker.constants';
@@ -12,6 +12,7 @@ const DatePicker: FunctionComponent<DatePickerProps> = ({
   error,
   fullWidth = true,
   name,
+  onChange,
   required,
   size = 'medium',
   title,
@@ -35,6 +36,7 @@ const DatePicker: FunctionComponent<DatePickerProps> = ({
 
   const handleDateChange = (value: Date): void => {
     setDateValue(value);
+    onChange && onChange(({ target: { name, value: value.getTime() } } as unknown) as ChangeEvent<HTMLInputElement>);
   };
 
   return (

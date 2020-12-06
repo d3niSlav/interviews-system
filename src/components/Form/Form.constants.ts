@@ -8,7 +8,7 @@ export interface AdditionalFormAction {
   onClick: () => void;
 }
 
-export type FormControlFieldType = 'checkbox' | 'radio' | 'select' | 'text' | 'textarea';
+export type FormControlFieldType = 'checkbox' | 'date' | 'radio' | 'select' | 'text' | 'textarea';
 
 export type FormValue = boolean | string | string[] | number | number[];
 

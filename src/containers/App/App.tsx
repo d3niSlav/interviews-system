@@ -13,7 +13,9 @@ const App: FunctionComponent = () => (
         <Form
           id="example-form"
           errors={{}}
-          initialValues={{}}
+          initialValues={{
+            dateInput: 817122660000,
+          }}
           config={{
             textInput: {
               label: 'Text input field',
@@ -67,6 +69,10 @@ const App: FunctionComponent = () => (
               title: 'Checkbox field',
               label: 'Option text',
               fieldType: 'checkbox',
+            },
+            dateInput: {
+              title: 'Date field',
+              fieldType: 'date',
             },
           }}
           onSubmit={(data): void => alert(JSON.stringify(data, null, '\t'))}

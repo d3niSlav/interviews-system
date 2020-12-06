@@ -11,6 +11,7 @@ import {
 } from './Form.constants';
 import {
   renderCheckboxField,
+  renderDateInputField,
   renderRadioButtonsField,
   renderSelectField,
   renderTextAreaField,
@@ -99,6 +100,8 @@ export const generateFormFields = (
     switch (control.fieldType) {
       case 'checkbox':
         return renderCheckboxField({ control, inputChangedHandler });
+      case 'date':
+        return renderDateInputField({ control, inputChangedHandler });
       case 'radio':
         return renderRadioButtonsField({ control, inputChangedHandler });
       case 'select':

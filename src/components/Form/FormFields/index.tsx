@@ -1,5 +1,7 @@
 export { default as renderCheckboxField } from './CheckboxField';
 
+export { default as renderDateInputField } from './DateInputField';
+
 export { default as renderRadioButtonsField } from './RadioInputsField';
 
 export { default as renderSelectField } from './SelectField';
