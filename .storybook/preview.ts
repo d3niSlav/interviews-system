@@ -1,4 +1,4 @@
-import '../src/index.scss';
+import '../src/assets/styles/index.scss';
 
 export const parameters = {
   controls: { expanded: true },
