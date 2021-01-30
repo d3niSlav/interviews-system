@@ -1,7 +1,12 @@
 import React, { CSSProperties, FunctionComponent } from 'react';
-import ReactSelect, { StylesConfig } from 'react-select';
+import ReactSelect, { StylesConfig, ValueType } from 'react-select';
 
-import { getSelectCSSPropertiesOverrides, SELECT_CUSTOM_STYLES, SelectProps } from './Select.constants';
+import {
+  getSelectCSSPropertiesOverrides,
+  SELECT_CUSTOM_STYLES,
+  SelectOptionType,
+  SelectProps,
+} from './Select.constants';
 import Label from '../Label';
 
 import styles from './Select.module.scss';
@@ -10,6 +15,7 @@ const Select: FunctionComponent<SelectProps> = ({
   autoFocus = false,
   className,
   classNamePrefix,
+  defaultOption,
   errorMessage,
   isDisabled = false,
   isMulti = false,
@@ -17,7 +23,7 @@ const Select: FunctionComponent<SelectProps> = ({
   name,
   noOptionsMessage,
   noOptionsText,
-  onChange,
+  onValueChanged,
   options = [],
   placeholder,
   required,
@@ -26,7 +32,7 @@ const Select: FunctionComponent<SelectProps> = ({
 }) => {
   const getNoOptionsText = (): string | null => (noOptionsText ? noOptionsText : null);
 
-  const selectStyles: StylesConfig = {
+  const selectStyles: StylesConfig<SelectOptionType, boolean> = {
     ...SELECT_CUSTOM_STYLES,
     control: (provided, state) => ({
       ...provided,
@@ -34,14 +40,26 @@ const Select: FunctionComponent<SelectProps> = ({
     }),
   };
 
+  const defaultSelectedOption = options
+    ? ((options as SelectOptionType[]).find((option) => option.value === defaultOption) as ValueType<
+        SelectOptionType,
+        boolean
+      >)
+    : undefined;
+
+  const handleOnChange = (selectedOption: ValueType<SelectOptionType, boolean>): void => {
+    name && onValueChanged && onValueChanged(name, selectedOption as SelectOptionType | SelectOptionType[]);
+  };
+
   return (
     <Label error={errorMessage} title={title} fullWidth required={required}>
       <div className={styles.selectWrapper}>
-        <ReactSelect
+        <ReactSelect<SelectOptionType, boolean>
           styles={selectStyles}
           autoFocus={autoFocus}
           className={className}
           classNamePrefix={classNamePrefix}
+          defaultValue={defaultSelectedOption}
           isDisabled={isDisabled}
           isMulti={isMulti}
           isSearchable={isSearchable}
@@ -51,7 +69,7 @@ const Select: FunctionComponent<SelectProps> = ({
           required={required}
           noOptionsMessage={noOptionsText ? getNoOptionsText : noOptionsMessage}
           value={value}
-          onChange={onChange}
+          onChange={handleOnChange}
           openMenuOnFocus={true}
           tabSelectsValue={false}
         />

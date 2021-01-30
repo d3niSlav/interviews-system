@@ -1,12 +1,11 @@
 import React, { FunctionComponent } from 'react';
-import { ValueType } from 'react-select';
 
-import { FormControlElementProps } from '../Form.constants';
-import Select, { SelectOption } from '../../Select';
+import { FormControlElementProps, FormValue } from '../Form.constants';
+import Select, { SelectOption, SelectOptionType } from '../../Select';
 
 type SelectFieldProps = {
   control: FormControlElementProps;
-  inputChangedHandler: (name: string, value: string | string[]) => void;
+  inputChangedHandler: (name: string, value: FormValue) => void;
 };
 
 const SelectField: FunctionComponent<SelectFieldProps> = ({ control, inputChangedHandler }) => {
@@ -14,10 +13,12 @@ const SelectField: FunctionComponent<SelectFieldProps> = ({ control, inputChange
     error,
     fieldType,
     id,
-    isMulti,
     label,
+    multiple,
     name,
     options = [],
+    required,
+    searchable,
     touched,
     valid,
     validations,
@@ -25,18 +26,20 @@ const SelectField: FunctionComponent<SelectFieldProps> = ({ control, inputChange
     ...elementProps
   } = control;
 
-  const selectedOption = isMulti
-    ? (options as SelectOption[]).filter((option) => Array.isArray(value) && (value as string[]).includes(option.value))
+  const selectedOption = multiple
+    ? (options as SelectOption[]).filter(
+        (option) => Array.isArray(value) && (value as (number | string)[]).includes(option.value),
+      )
     : (options as SelectOption[]).filter((option) => option.value === value);
 
-  const handleOnChange = (option: ValueType<SelectOption>): void => {
-    let value: string | string[] = isMulti ? [] : '';
+  const handleOnChange = (name: string, selectedValue: SelectOptionType | SelectOptionType[]): void => {
+    let value: FormValue = multiple ? [] : '';
 
-    if (option) {
-      if (isMulti && Array.isArray(option)) {
-        value = (option as SelectOption[]).map((option) => option.value);
+    if (selectedValue) {
+      if (multiple && Array.isArray(selectedValue)) {
+        value = (selectedValue as SelectOptionType[]).map((option: SelectOptionType) => option.value);
       } else {
-        value = (option as SelectOption).value;
+        value = (selectedValue as SelectOptionType).value;
       }
     }
 
@@ -47,14 +50,15 @@ const SelectField: FunctionComponent<SelectFieldProps> = ({ control, inputChange
     <div key={`${fieldType}-${id}`}>
       <Select
         id={id}
-        name={name}
-        isMulti={isMulti}
-        required={!!validations?.required}
+        name={id || name}
+        isSearchable={searchable}
+        isMulti={multiple}
+        required={required || !!validations?.required}
         title={label}
-        error={touched && valid ? error : ''}
+        error={touched && !valid ? error : ''}
         value={selectedOption}
-        options={options as SelectOption[]}
-        onChange={handleOnChange}
+        options={options as SelectOptionType[]}
+        onValueChanged={handleOnChange}
         {...elementProps}
       />
     </div>

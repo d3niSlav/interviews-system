@@ -1,15 +1,19 @@
-import { Props, Props as ReactSelectProps, StylesConfig } from 'react-select';
+import { OptionTypeBase, Props, Props as ReactSelectProps, StylesConfig } from 'react-select';
 import { CSSProperties } from 'react';
 
-export type SelectProps = ReactSelectProps & {
+export type SelectProps = ReactSelectProps<SelectOptionType, boolean> & {
   errorMessage?: string;
   noOptionsText?: string;
 };
 
-export type SelectOption = {
+export type SelectOptionValue = number | string;
+
+export interface SelectOption {
   label: string;
-  value: string;
-};
+  value: SelectOptionValue;
+}
+
+export type SelectOptionType = OptionTypeBase & SelectOption;
 
 export const getSelectCSSPropertiesOverrides = (menuIsOpen = false, isFocused = false, hasErrors = false): Props => {
   const borderColor = menuIsOpen ? '#27262e' : hasErrors ? '#ff3e3e' : isFocused ? '#1d60ff' : '#6d7381';
@@ -29,7 +33,7 @@ export const getSelectCSSPropertiesOverrides = (menuIsOpen = false, isFocused = 
   };
 };
 
-export const SELECT_CUSTOM_STYLES: StylesConfig = {
+export const SELECT_CUSTOM_STYLES: StylesConfig<SelectOptionType, boolean> = {
   singleValue: (provided) => ({
     ...provided,
     color: '#ffffff',

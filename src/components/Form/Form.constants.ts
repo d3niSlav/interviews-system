@@ -1,6 +1,6 @@
 import { Props as ReactSelectProps } from 'react-select/src/Select';
 import { CheckboxInputOption } from '../Checkbox';
-import { SelectOption } from '../Select';
+import { SelectOptionType } from '../Select';
 import { RadioButtonOption } from '../RadioButtons';
 
 export interface AdditionalFormAction {
@@ -10,7 +10,7 @@ export interface AdditionalFormAction {
 
 export type FormControlFieldType = 'checkbox' | 'date' | 'radio' | 'select' | 'text' | 'textarea';
 
-export type FormValue = boolean | string | string[] | number | number[];
+export type FormValue = boolean | number | string | (number | string)[];
 
 export interface FormDataValues {
   [key: string]: FormValue;
@@ -26,7 +26,7 @@ export interface FormControl extends Omit<ReactSelectProps, 'value'> {
   fieldType: FormControlFieldType;
   inline?: boolean;
   label?: string;
-  options?: (CheckboxInputOption | FormOption | RadioButtonOption | SelectOption)[];
+  options?: (CheckboxInputOption | FormOption | RadioButtonOption | SelectOptionType)[];
   placeholder?: string;
   rows?: number;
   validations?: FormControlValidations;
