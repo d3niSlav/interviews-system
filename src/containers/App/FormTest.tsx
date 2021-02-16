@@ -4,6 +4,7 @@ import { Form } from 'react-final-form';
 import Button from '../../components/Button';
 import {
   CheckboxesField,
+  DatePickerField,
   RadioInputField,
   SelectField,
   TextAreaField,
@@ -21,16 +22,16 @@ const FormTest: FunctionComponent = () => {
   return (
     <Form
       onSubmit={onSubmit}
-      initialValues={{ sauces: 'pineapple', employed: true }}
+      initialValues={{ firstName: 'Deni', lastName: 'Enchev', sauces: 'pineapple', employed: true, date: Date.now() }}
       render={({ handleSubmit, form, submitting, pristine, values }) => (
         <form onSubmit={handleSubmit} style={{ display: 'flex', width: '100%', padding: '0 100px' }}>
           <div style={{ width: '50%' }}>
             <div style={{ display: 'flex' }}>
               <div style={{ width: '50%' }}>
-                <TextInputField title="First name" name="first-name" placeholder="Enter first name..." required />
+                <TextInputField title="First name" name="firstName" placeholder="Enter first name..." required />
               </div>
               <div style={{ width: '50%' }}>
-                <TextInputField title="Last name" name="last-name" placeholder="Enter last name..." />
+                <TextInputField title="Last name" name="lastName" placeholder="Enter last name..." />
               </div>
             </div>
             <SelectField
@@ -83,6 +84,7 @@ const FormTest: FunctionComponent = () => {
               ]}
             />
             <TextAreaField title="Notes" name="notes" placeholder="Enter notes..." rows={5} />
+            <DatePickerField title="Date" name="date" placeholder="Enter a date" />
             <div className="buttons">
               <Button text="Submit" type="submit" disabled={submitting || pristine} />
               &nbsp;

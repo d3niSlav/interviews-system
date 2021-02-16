@@ -1,5 +1,7 @@
 export { CheckboxesField } from './CheckboxesField';
 
+export { DatePickerField } from './DatePickerField';
+
 export { RadioInputField } from './RadioInputField';
 
 export { SelectField } from './SelectField';
