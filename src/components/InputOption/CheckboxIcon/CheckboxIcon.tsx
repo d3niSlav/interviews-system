@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 
-import { ReactComponent as Icon } from '../../../../assets/images/svg/checkbox-icon.svg';
+import { ReactComponent as Icon } from '../../../assets/images/svg/checkbox-icon.svg';
 
 import styles from './CheckboxIcon.module.scss';
 

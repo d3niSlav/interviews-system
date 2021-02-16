@@ -1,40 +1,48 @@
-import React, { FocusEvent, FunctionComponent } from 'react';
+import React, { ReactElement } from 'react';
+import { Field, FieldProps, FieldRenderProps } from 'react-final-form';
 
-import { FormControlElementProps } from '../Form.constants';
-import TextArea from '../../TextArea';
+import { ShowErrorFunc, showErrorOnChange } from '../Form.helpers';
+import TextArea, { TextAreaProps } from '../../TextArea';
 
-type TextAreaFieldProps = {
-  control: FormControlElementProps;
-  inputChangedHandler: (name: string, value: string) => void;
+type TextAreaFieldWrapperProps = FieldRenderProps<TextAreaProps>;
+
+export type TextAreaFieldProps = Partial<Omit<TextAreaProps, 'type' | 'onChange'>> & {
+  name: string;
+  fieldProps?: Partial<FieldProps<TextAreaProps, TextAreaFieldWrapperProps>>;
+  showError?: ShowErrorFunc;
 };
 
-const TextAreaField: FunctionComponent<TextAreaFieldProps> = ({ control, inputChangedHandler }) => {
-  const { id, error, fieldType, label, touched, valid, validations, value, ...elementProps } = control;
-
-  const handleOnChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
-    const { name, value } = event.target;
-    inputChangedHandler(name, value);
-  };
-
-  const handleOnBlur = (event: FocusEvent<HTMLTextAreaElement>): void => {
-    const { name, value } = event.target;
-    inputChangedHandler(name, value);
-  };
+export function TextAreaField(props: TextAreaFieldProps): ReactElement {
+  const { name, fieldProps, ...rest } = props;
 
   return (
-    <div key={`${fieldType}-${id}`}>
-      <TextArea
-        id={id}
-        required={!!validations?.required}
-        title={label}
-        error={touched && !valid ? error : ''}
-        onChange={handleOnChange}
-        onBlur={handleOnBlur}
-        value={value as string}
-        {...elementProps}
-      />
-    </div>
+    <Field
+      name={name}
+      render={({ input, meta }) => <TextAreaFieldWrapper input={input} meta={meta} name={name} {...rest} />}
+      {...fieldProps}
+    />
   );
-};
+}
 
-export default TextAreaField;
+export function TextAreaFieldWrapper(props: TextAreaFieldWrapperProps): ReactElement {
+  const {
+    input: { name, value, onChange, ...inputProps },
+    meta,
+    showError = showErrorOnChange,
+    ...others
+  } = props;
+
+  const { error, submitError } = meta;
+  const isError = showError({ meta });
+
+  return (
+    <TextArea
+      error={isError ? error || submitError : ''}
+      name={name}
+      onChange={onChange}
+      value={(value as unknown) as string}
+      {...inputProps}
+      {...others}
+    />
+  );
+}

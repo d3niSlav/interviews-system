@@ -1,40 +1,51 @@
-import React, { FocusEvent, FunctionComponent } from 'react';
+import React, { ReactElement } from 'react';
+import { Field, FieldProps, FieldRenderProps } from 'react-final-form';
 
-import { FormControlElementProps } from '../Form.constants';
-import TextInput from '../../TextInput';
+import { ShowErrorFunc, showErrorOnChange } from '../Form.helpers';
+import { INPUT_TYPE_TEXT, TEXT_FIELD_TYPE } from '../../Input';
+import TextInput, { TextInputProps } from '../../TextInput';
 
-type TextInputFieldProps = {
-  control: FormControlElementProps;
-  inputChangedHandler: (name: string, value: string) => void;
+type TextInputFieldWrapperProps = FieldRenderProps<TextInputProps>;
+
+export type TextInputFieldProps = Partial<Omit<TextInputProps, 'type' | 'onChange'>> & {
+  name: string;
+  type?: TEXT_FIELD_TYPE;
+  fieldProps?: Partial<FieldProps<TextInputProps, TextInputFieldWrapperProps>>;
+  showError?: ShowErrorFunc;
 };
 
-const TextInputField: FunctionComponent<TextInputFieldProps> = ({ control, inputChangedHandler }) => {
-  const { id, error, fieldType, label, touched, valid, validations, value, ...elementProps } = control;
-
-  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement> | FocusEvent<HTMLInputElement>): void => {
-    const { name, value } = event.target;
-    inputChangedHandler(name, value);
-  };
-
-  const handleOnBlur = (event: FocusEvent<HTMLInputElement>): void => {
-    const { name, value } = event.target;
-    inputChangedHandler(name, value);
-  };
+export function TextInputField(props: TextInputFieldProps): ReactElement {
+  const { name, type, fieldProps, ...rest } = props;
 
   return (
-    <div key={`${fieldType}-${id}`}>
-      <TextInput
-        id={id}
-        required={!!validations?.required}
-        title={label}
-        error={touched && !valid ? error : ''}
-        onChange={handleOnChange}
-        onBlur={handleOnBlur}
-        value={value as string}
-        {...elementProps}
-      />
-    </div>
+    <Field
+      name={name}
+      type={type || INPUT_TYPE_TEXT}
+      render={({ input, meta }) => <TextFieldWrapper input={input} meta={meta} name={name} type={type} {...rest} />}
+      {...fieldProps}
+    />
   );
-};
+}
 
-export default TextInputField;
+export function TextFieldWrapper(props: TextInputFieldWrapperProps): ReactElement {
+  const {
+    input: { name, value, onChange, ...inputProps },
+    meta,
+    showError = showErrorOnChange,
+    ...others
+  } = props;
+
+  const { error, submitError } = meta;
+  const isError = showError({ meta });
+
+  return (
+    <TextInput
+      error={isError ? error || submitError : ''}
+      name={name}
+      onChange={onChange}
+      value={(value as unknown) as string}
+      {...inputProps}
+      {...others}
+    />
+  );
+}

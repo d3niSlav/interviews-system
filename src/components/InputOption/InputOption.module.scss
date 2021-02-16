@@ -7,6 +7,7 @@
   transition: color 0.2s ease;
   vertical-align: middle;
 
+  &.checked,
   &.selected {
     color: #ffffff;
   }
@@ -33,6 +34,11 @@
 
     ellipse[id='frame'] {
       stroke: #1f3e8c;
+    }
+
+    path[id='outline'] {
+      stroke: #1f3e8c;
+      stroke-width: 1;
     }
   }
 }

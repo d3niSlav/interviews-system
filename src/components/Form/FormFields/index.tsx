@@ -1,11 +1,9 @@
-export { default as renderCheckboxField } from './CheckboxField';
+export { CheckboxesField } from './CheckboxesField';
 
-export { default as renderDateInputField } from './DateInputField';
+export { RadioInputField } from './RadioInputField';
 
-export { default as renderRadioButtonsField } from './RadioInputsField';
+export { SelectField } from './SelectField';
 
-export { default as renderSelectField } from './SelectField';
+export { TextAreaField } from './TextAreaField';
 
-export { default as renderTextAreaField } from './TextAreaField';
-
-export { default as renderTextInputField } from './TextInputField';
+export { TextInputField } from './TextInputField';
