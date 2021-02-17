@@ -1,27 +1,43 @@
 import React, { FunctionComponent } from 'react';
 import { Form } from 'react-final-form';
+import { useHistory } from 'react-router';
 
 import { RegisterDto } from './Register.dto';
 import Button from '../../../components/Button';
-import { TextInputField } from '../../../components/Form/FormFields';
-import { composeValidators, notEmpty } from '../../../components/Form/Field.helpers';
+import { TextInputField, composeValidators, notEmpty } from '../../../components/FormFields';
+import Grid from '../../../components/Grid';
+import { post } from '../../../shared/api';
 
 import styles from '../Auth.module.scss';
 import { ReactComponent as RegisterIcon } from '../../../assets/images/svg/register.svg';
 
 const Register: FunctionComponent = () => {
+  const history = useHistory();
+
   const onSubmit = async (values: RegisterDto) => {
-    alert(JSON.stringify(values, null, '\t'));
+    let errors = {};
+
+    await post<void, RegisterDto>('/auth/register', values)
+      .then(() => {
+        history.push('/login');
+      })
+      .catch((error) => {
+        const customErrors = error.response.data.message;
+        // TODO add error handling
+        errors = { password: Array.isArray(customErrors) ? customErrors[0] : customErrors };
+      });
+
+    return errors;
   };
 
   return (
     <div className={styles.tile}>
-      <div className={styles.content}>
-        <div className={styles.imageWrapper}>
+      <Grid container className={styles.content}>
+        <Grid item className={styles.imageWrapper} md={6}>
           <RegisterIcon className={styles.image} />
-        </div>
-        <div className={styles.formWrapper}>
-          <h1 className="text-center color-accent">Register</h1>
+        </Grid>
+        <Grid item className={styles.formWrapper} md={6}>
+          <h1 className={`text-center color-accent ${styles.heading}`}>Register</h1>
           <br />
           <Form
             onSubmit={onSubmit}
@@ -35,7 +51,7 @@ const Register: FunctionComponent = () => {
               return errors;
             }}
             render={({ handleSubmit, form, submitting, pristine }) => (
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} className={`full-width ${styles.form}`}>
                 <TextInputField
                   title="Name"
                   name="name"
@@ -62,7 +78,7 @@ const Register: FunctionComponent = () => {
                   placeholder="Enter password..."
                   required
                   fieldProps={{
-                    validate: composeValidators(notEmpty('Please, enter password!')),
+                    validate: composeValidators(notEmpty('Please, enter your password!')),
                   }}
                 />
                 <TextInputField
@@ -77,14 +93,17 @@ const Register: FunctionComponent = () => {
                 />
                 {/* TODO GDPR */}
                 {/*<CheckboxesField title="Employed" name="employed" />*/}
-                <div className="text-center">
-                  <Button text="Sign up" type="submit" disabled={submitting || pristine} />
-                </div>
+                <Button
+                  className={styles.submitAction}
+                  disabled={submitting || pristine}
+                  text="Sign up"
+                  type="submit"
+                />
               </form>
             )}
           />
-        </div>
-      </div>
+        </Grid>
+      </Grid>
     </div>
   );
 };

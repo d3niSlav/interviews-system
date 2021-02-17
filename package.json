@@ -13,6 +13,7 @@
     "@types/react-router-dom": "^5.1.7",
     "@types/react-router-redux": "^5.0.18",
     "@types/react-select": "^4.0.8",
+    "axios": "^0.21.1",
     "final-form": "^4.20.1",
     "final-form-arrays": "^3.0.2",
     "moment": "^2.29.1",

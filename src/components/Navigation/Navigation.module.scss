@@ -1,3 +1,5 @@
+@import 'src/assets/styles/colors';
+
 .navLinkBox {
   position: relative;
   display: block;
@@ -5,25 +7,29 @@
   height: 52px;
   line-height: 30px;
   padding: 11px;
-  color: #c1c5d0;
+  color: $text-color;
   text-align: center;
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
   cursor: pointer;
   transition: color 0.2s;
 
+  svg path {
+    fill: $text-color;
+  }
+
   &:hover {
-    color: #1d60ff;
+    color: $accent-color;
 
     svg path {
-      fill: #1d60ff;
+      fill: $accent-color;
     }
   }
 
   &.active {
-    color: #1d60ff;
+    color: $accent-color;
     font-weight: 700;
-    background-color: #1a1721;
+    background-color: $background-color;
 
     &::before,
     &::after {
@@ -34,18 +40,18 @@
       width: 12px;
       height: 12px;
       margin-left: -12px;
-      border-right: 15px solid #1a1721;
+      border-right: 15px solid $background-color;
     }
 
     &::before {
       top: -12px;
-      border-bottom: 15px solid #1a1721;
+      border-bottom: 15px solid $background-color;
       border-bottom-right-radius: 24px;
     }
 
     &::after {
       bottom: -12px;
-      border-top: 15px solid #1a1721;
+      border-top: 15px solid $background-color;
       border-top-right-radius: 24px;
     }
   }
@@ -65,28 +71,28 @@
   .linkOption {
     position: relative;
     padding: 13px 15px 12px;
-    background-color: #23232a;
-    border: 1px solid #3a3e4f;
+    background-color: $background-contrast-color;
+    border: 1px solid darken($background-contrast-color, 10%);
     border-bottom: 0;
     transition: background-color 0.3s;
 
     &:last-child {
-      border-bottom: 1px solid #3a3e4f;
+      border-bottom: 1px solid darken($background-contrast-color, 10%);
     }
 
     .link {
       line-height: 1.5;
-      color: #c1c5d0;
+      color: $text-color;
       font-size: 15px;
       transition: color 0.3s;
     }
 
     &:hover {
-      background-color: #2b2b32;
+      background-color: darken($background-contrast-color, 10%);
     }
 
     &.active {
-      background-color: #1a1721;
+      background-color: $background-color;
 
       &::after {
         content: '';
@@ -95,14 +101,14 @@
         right: 0;
         width: 4px;
         height: 100%;
-        background-color: #1d60ff;
+        background-color: $accent-color;
       }
     }
 
     &:hover,
     &.active {
       .link {
-        color: #c1c5d0;
+        color: $text-color;
       }
     }
   }
@@ -115,7 +121,7 @@
   left: 0;
   z-index: 1001;
   width: 52px;
-  background-color: #27262e;
+  background-color: $background-contrast-color;
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
 
@@ -158,7 +164,7 @@
     }
 
     &:hover .iconWrapper::after {
-      border-bottom-color: #1d60ff;
+      border-bottom-color: $accent-color;
     }
 
     &:hover .navLinkOptions {

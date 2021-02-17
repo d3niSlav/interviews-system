@@ -1,14 +1,16 @@
+@import 'src/assets/styles/colors';
+
 .selected {
   circle[id='dot'] {
     opacity: 1;
   }
 
   ellipse[id='frame'] {
-    stroke: #1d60ff;
+    stroke: $accent-color;
   }
 
   &:hover ellipse[id='frame'] {
-    stroke: #1f3e8c;
+    stroke: $accent-color-dark;
   }
 }
 
@@ -30,7 +32,7 @@
     }
 
     &:hover ellipse[id='frame'] {
-      stroke: #1f3e8c;
+      stroke: $accent-color-dark;
     }
   }
 }

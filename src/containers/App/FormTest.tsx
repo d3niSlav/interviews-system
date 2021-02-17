@@ -4,20 +4,18 @@ import { Form } from 'react-final-form';
 import Button from '../../components/Button';
 import {
   CheckboxesField,
-  DatePickerField,
-  RadioInputField,
-  SelectField,
-  TextAreaField,
-  TextInputField,
-} from '../../components/Form/FormFields';
-import {
   composeValidators,
+  DatePickerField,
   maxValue,
   minValue,
   mustBeNumber,
   notEmpty,
+  RadioInputField,
   required,
-} from '../../components/Form/Field.helpers';
+  SelectField,
+  TextAreaField,
+  TextInputField,
+} from '../../components/FormFields';
 import Navigation from '../../components/Navigation';
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -36,7 +34,7 @@ const FormTest: FunctionComponent = () => {
           onSubmit={onSubmit}
           initialValues={{
             firstName: 'Deni',
-            lastName: 'Enchev',
+            lastName: 'E.',
             sauces: 'pineapple',
             employed: true,
             date: Date.now(),

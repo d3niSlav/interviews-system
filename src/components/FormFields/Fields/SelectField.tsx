@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { Field, FieldProps, FieldRenderProps } from 'react-final-form';
 import { ValueType } from 'react-select';
 
-import { ShowErrorFunc, showErrorOnChange, useFieldForErrors } from '../Form.helpers';
+import { ShowErrorFunc, showErrorOnChange, useFieldForErrors } from '../FormFields.helpers';
 import Select, { SelectOptionType, SelectProps } from '../../Select';
 
 export type SelectFieldProps = Partial<Omit<SelectProps, 'type' | 'onChange'>> & {
@@ -25,11 +25,11 @@ export function SelectField(props: SelectFieldProps): ReactElement {
 
         return (
           <Select
-            name={name}
             errorMessage={isError ? error || submitError : ''}
-            value={finalValue as ValueType<SelectOptionType, boolean>}
             isMulti={multiple}
+            name={name}
             onChange={onChange}
+            value={finalValue as ValueType<SelectOptionType, boolean>}
             {...restSelect}
             {...selectProps}
           />

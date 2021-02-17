@@ -12,12 +12,17 @@ const Button: FunctionComponent<ButtonProps> = ({
   size = 'medium',
   text,
   type = 'button',
+  className,
   ...others
 }) => {
   const buttonClasses = [styles.button, styles[size]];
 
   if (outlined) {
     buttonClasses.push(styles.outlined);
+  }
+
+  if (className) {
+    buttonClasses.push(className);
   }
 
   if (fullWidth) {

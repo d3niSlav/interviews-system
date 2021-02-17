@@ -1,3 +1,5 @@
+@import 'src/assets/styles/colors';
+
 .checked {
   path[id='check'] {
     opacity: 1;
@@ -13,7 +15,7 @@
   }
 
   &:hover path[id='check-outline'] {
-    stroke: #1f3e8c;
+    stroke: $accent-color-dark;
   }
 }
 
@@ -33,7 +35,7 @@
     }
 
     &:hover path[id='outline'] {
-      stroke: #1f3e8c;
+      stroke: $accent-color-dark;
       stroke-width: 1;
     }
   }

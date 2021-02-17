@@ -1,3 +1,5 @@
+@import 'src/assets/styles/colors';
+
 .label {
   display: inline-block;
   padding: 8px 6px 7px 2px;
@@ -9,7 +11,7 @@
 
   &.checked,
   &.selected {
-    color: #ffffff;
+    color: $text-color;
   }
 }
 
@@ -29,15 +31,15 @@
     outline: none;
 
     .label {
-      color: #d5dbdf;
+      color: $text-color;
     }
 
     ellipse[id='frame'] {
-      stroke: #1f3e8c;
+      stroke: $accent-color-dark;
     }
 
     path[id='outline'] {
-      stroke: #1f3e8c;
+      stroke: $accent-color-dark;
       stroke-width: 1;
     }
   }

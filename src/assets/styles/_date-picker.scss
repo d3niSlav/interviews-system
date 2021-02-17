@@ -533,7 +533,7 @@
 .react-datepicker__year-text--in-selecting-range,
 .react-datepicker__year-text--in-range {
   color: #ffffff;
-  background-color: #1d60ff;
+  background-color: $accent-color;
   transition: background-color 0.2s;
 }
 
@@ -549,14 +549,14 @@
 .react-datepicker__year-text--selected:hover,
 .react-datepicker__year-text--in-selecting-range:hover,
 .react-datepicker__year-text--in-range:hover {
-  background-color: #1f3e8c;
+  background-color: $accent-color-dark;
 }
 
 .react-datepicker__day--keyboard-selected,
 .react-datepicker__month-text--keyboard-selected,
 .react-datepicker__quarter-text--keyboard-selected,
 .react-datepicker__year-text--keyboard-selected {
-  background-color: #1f3e8c;
+  background-color: $accent-color-dark;
   color: #ffffff;
 }
 
@@ -605,7 +605,7 @@
 .react-datepicker__quarter-text.react-datepicker__month--in-range:hover,
 .react-datepicker__quarter-text.react-datepicker__quarter--selected:hover,
 .react-datepicker__quarter-text.react-datepicker__quarter--in-range:hover {
-  background-color: #1f3e8c;
+  background-color: $accent-color-dark;
 }
 
 .react-datepicker__month-text:hover,

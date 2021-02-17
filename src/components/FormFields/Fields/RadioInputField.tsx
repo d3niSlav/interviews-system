@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Field, FieldProps, FieldRenderProps } from 'react-final-form';
 
-import { ShowErrorFunc, showErrorOnChange, useFieldForErrors } from '../Form.helpers';
+import { ShowErrorFunc, showErrorOnChange, useFieldForErrors } from '../FormFields.helpers';
 import { BaseInputProps } from '../../Input';
 import InputOption, { InputOptionData, InputOptionProps } from '../../InputOption';
 import Label from '../../Label';
@@ -16,13 +16,13 @@ export type RadioInputFieldProps = Partial<Omit<RadioInputProps, 'type' | 'onCha
 
 export function RadioInputField(props: RadioInputFieldProps): ReactElement {
   const {
-    size,
     fullWidth = true,
-    required,
-    options = [],
     name,
-    title,
+    options = [],
+    required,
     showError = showErrorOnChange,
+    size,
+    title,
     ...restRadioInput
   } = props;
   const field = useFieldForErrors(name);
@@ -30,28 +30,28 @@ export function RadioInputField(props: RadioInputFieldProps): ReactElement {
 
   return (
     <Label
-      title={title}
       error={typeof isError === 'string' ? isError : ''}
       fullWidth={fullWidth}
-      size={size}
       groupedElement
       required={required}
+      size={size}
+      title={title}
     >
       {options.map((item, index) => (
         <Field
-          type="radio"
           key={`${name}-${index}`}
           name={name}
+          type="radio"
           value={item.value}
           render={({ input: { name, value, onChange, checked, ...restInput } }) => (
             <InputOption
+              checked={checked}
+              disabled={item.disabled}
               inputType="radio"
               label={item.label}
               name={name}
-              value={value}
               onChange={onChange}
-              checked={checked}
-              disabled={item.disabled}
+              value={value}
               {...restInput}
               {...restRadioInput}
             />

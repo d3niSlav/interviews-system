@@ -1,26 +1,30 @@
 import React, { FunctionComponent } from 'react';
 import { Form } from 'react-final-form';
+import { useHistory, useLocation } from 'react-router';
 
-import { LoginDto, UserTokenDto } from './Login.dto';
+import { ResetPasswordDto } from './Reset.dto';
 import Button from '../../../components/Button';
 import { TextInputField, composeValidators, notEmpty } from '../../../components/FormFields';
 import Grid from '../../../components/Grid';
 import { post } from '../../../shared/api';
 
 import styles from '../Auth.module.scss';
-import { ReactComponent as LoginIcon } from '../../../assets/images/svg/login.svg';
+import { ReactComponent as ResetPasswordIcon } from '../../../assets/images/svg/reset-password.svg';
 
-const Login: FunctionComponent = () => {
-  const onSubmit = async (values: LoginDto) => {
+const Reset: FunctionComponent = () => {
+  const history = useHistory();
+  const location = useLocation();
+
+  const onSubmit = async (values: ResetPasswordDto) => {
     let errors = {};
 
-    await post<UserTokenDto, LoginDto>('/auth/login', values)
-      .then((data) => {
-        // TODO set token to the store
-        alert(JSON.stringify(data, null, '\t'));
+    await post<void, ResetPasswordDto>(`/auth/reset${location.search}`, values)
+      .then(() => {
+        history.push('/login');
       })
       .catch((error) => {
-        errors = { email: error.response.data.message };
+        const customErrors = error.response.data.message;
+        errors = { password: Array.isArray(customErrors) ? customErrors[0] : customErrors };
       });
 
     return errors;
@@ -30,39 +34,39 @@ const Login: FunctionComponent = () => {
     <div className={styles.tile}>
       <Grid container className={styles.content}>
         <Grid item className={styles.imageWrapper} md={6}>
-          <LoginIcon className={styles.image} />
+          <ResetPasswordIcon className={styles.image} />
         </Grid>
         <Grid item className={styles.formWrapper} md={6}>
-          <h1 className={`text-center color-accent ${styles.heading}`}>Login</h1>
+          <h1 className={`text-center color-accent ${styles.heading}`}>Set a new password</h1>
           <br />
           <Form
             onSubmit={onSubmit}
             render={({ handleSubmit, form, submitting, pristine }) => (
               <form onSubmit={handleSubmit} className={`full-width ${styles.form}`}>
                 <TextInputField
-                  title="Email"
-                  name="email"
-                  type="email"
-                  placeholder="Enter email..."
-                  required
-                  fieldProps={{
-                    validate: composeValidators(notEmpty('Please, enter your email!')),
-                  }}
-                />
-                <TextInputField
-                  title="Password"
+                  title="New password"
                   name="password"
                   type="password"
                   placeholder="Enter password..."
                   required
                   fieldProps={{
-                    validate: composeValidators(notEmpty('Please, enter your password!')),
+                    validate: composeValidators(notEmpty('Please, enter password!')),
+                  }}
+                />
+                <TextInputField
+                  title="Confirm password"
+                  name="confirmPassword"
+                  type="password"
+                  placeholder="Confirm your password..."
+                  required
+                  fieldProps={{
+                    validate: composeValidators(notEmpty('Please, confirm your password!')),
                   }}
                 />
                 <Button
                   className={styles.submitAction}
                   disabled={submitting || pristine}
-                  text="Sign in"
+                  text="Set password"
                   type="submit"
                 />
               </form>
@@ -74,4 +78,4 @@ const Login: FunctionComponent = () => {
   );
 };
 
-export default Login;
+export default Reset;

@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Field, FieldProps, FieldRenderProps } from 'react-final-form';
 
-import { ShowErrorFunc, showErrorOnChange } from '../Form.helpers';
+import { ShowErrorFunc, showErrorOnChange } from '../FormFields.helpers';
 import { INPUT_TYPE_TEXT, TEXT_FIELD_TYPE } from '../../Input';
 import TextInput, { TextInputProps } from '../../TextInput';
 

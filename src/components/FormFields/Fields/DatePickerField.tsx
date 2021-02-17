@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Field, FieldProps, FieldRenderProps } from 'react-final-form';
 
-import { ShowErrorFunc, showErrorOnChange } from '../Form.helpers';
+import { ShowErrorFunc, showErrorOnChange } from '../FormFields.helpers';
 import DatePicker, { DatePickerProps } from '../../DatePicker';
 
 type DatePickerWrapperProps = FieldRenderProps<DatePickerProps>;
@@ -37,13 +37,13 @@ function DatePickerWrapper(props: DatePickerWrapperProps) {
 
   return (
     <DatePicker
-      fullWidth={true}
       error={isError ? error || submitError : ''}
-      onChange={onChange}
+      fullWidth={true}
       name={name}
+      onChange={onChange}
       value={((value as unknown) as string) || undefined}
-      {...rest}
       {...restInput}
+      {...rest}
     />
   );
 }

@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Field, FieldProps, FieldRenderProps } from 'react-final-form';
 
-import { ShowErrorFunc, showErrorOnChange } from '../Form.helpers';
+import { ShowErrorFunc, showErrorOnChange } from '../FormFields.helpers';
 import TextArea, { TextAreaProps } from '../../TextArea';
 
 type TextAreaFieldWrapperProps = FieldRenderProps<TextAreaProps>;

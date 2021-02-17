@@ -1,49 +1,86 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { Form } from 'react-final-form';
+import { useHistory } from 'react-router';
 
 import { RecoverPasswordDto } from './Recover.dto';
 import Button from '../../../components/Button';
-import { TextInputField } from '../../../components/Form/FormFields';
-import { composeValidators, notEmpty } from '../../../components/Form/Field.helpers';
+import { composeValidators, notEmpty, TextInputField } from '../../../components/FormFields';
+import Grid from '../../../components/Grid';
+import { post } from '../../../shared/api';
 
 import styles from '../Auth.module.scss';
+import { ReactComponent as CheckEmailIcon } from '../../../assets/images/svg/check-email.svg';
 import { ReactComponent as RecoverPasswordIcon } from '../../../assets/images/svg/forgotten-password.svg';
 
 const Recover: FunctionComponent = () => {
+  const history = useHistory();
+  const [isEmailSent, setIsEmailSent] = useState(false);
+
   const onSubmit = async (values: RecoverPasswordDto) => {
-    alert(JSON.stringify(values, null, '\t'));
+    let errors = {};
+
+    await post<void, RecoverPasswordDto>('/auth/forgotten-password', values)
+      .then(() => {
+        setIsEmailSent(true);
+      })
+      .catch((error) => {
+        const customErrors = error.response.data.message;
+        errors = { email: Array.isArray(customErrors) ? customErrors[0] : customErrors };
+      });
+
+    return errors;
+  };
+
+  const handleGoBackClick = (): void => {
+    history.goBack();
   };
 
   return (
     <div className={styles.tile}>
-      <div className={styles.content}>
-        <div className={styles.imageWrapper}>
-          <RecoverPasswordIcon className={styles.image} />
-        </div>
-        <div className={styles.formWrapper}>
-          <h1 className="text-center color-accent">Recover password</h1>
-          <br />
-          <Form
-            onSubmit={onSubmit}
-            render={({ handleSubmit, form, submitting, pristine }) => (
-              <form onSubmit={handleSubmit}>
-                <TextInputField
-                  title="Email"
-                  name="email"
-                  placeholder="Enter email..."
-                  required
-                  fieldProps={{
-                    validate: composeValidators(notEmpty('Please, enter your email!')),
-                  }}
-                />
-                <div className="text-center">
-                  <Button text="Send recovery link" type="submit" disabled={submitting || pristine} />
-                </div>
-              </form>
-            )}
-          />
-        </div>
-      </div>
+      <Grid container className={styles.content}>
+        <Grid item className={styles.imageWrapper} md={6}>
+          {isEmailSent ? <CheckEmailIcon className={styles.image} /> : <RecoverPasswordIcon className={styles.image} />}
+        </Grid>
+        <Grid item className={styles.formWrapper} md={6}>
+          {isEmailSent ? (
+            <div className="text-center">
+              <h1 className={`text-center color-accent ${styles.heading}`}>Recover password email sent</h1>
+              <div className="text-center">
+                <p className="color-text">Check you email address in order to proceed with your password recovery</p>
+                <br />
+                <Button className={styles.submitAction} text="Go back" type="button" onClick={handleGoBackClick} />
+              </div>
+            </div>
+          ) : (
+            <>
+              <h1 className={`text-center color-accent ${styles.heading}`}>Recover password</h1>
+              <br />
+              <Form
+                onSubmit={onSubmit}
+                render={({ handleSubmit, form, submitting, pristine }) => (
+                  <form onSubmit={handleSubmit} className={`full-width ${styles.form}`}>
+                    <TextInputField
+                      title="Email"
+                      name="email"
+                      placeholder="Enter email..."
+                      required
+                      fieldProps={{
+                        validate: composeValidators(notEmpty('Please, enter your email!')),
+                      }}
+                    />
+                    <Button
+                      className={styles.submitAction}
+                      disabled={submitting || pristine}
+                      text="Send recovery link"
+                      type="submit"
+                    />
+                  </form>
+                )}
+              />
+            </>
+          )}
+        </Grid>
+      </Grid>
     </div>
   );
 };

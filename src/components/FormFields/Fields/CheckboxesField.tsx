@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Field, FieldProps, FieldRenderProps } from 'react-final-form';
 
-import { ShowErrorFunc, showErrorOnChange, useFieldForErrors } from '../Form.helpers';
+import { ShowErrorFunc, showErrorOnChange, useFieldForErrors } from '../FormFields.helpers';
 import { BaseInputProps } from '../../Input';
 import InputOption, { InputOptionData, InputOptionProps } from '../../InputOption';
 import Label from '../../Label';
@@ -19,13 +19,13 @@ export type CheckboxesFieldProps = Partial<Omit<InputOptionsProps, 'type' | 'onC
 
 export function CheckboxesField(props: CheckboxesFieldProps): ReactElement {
   const {
-    size,
-    fullWidth = true,
-    required,
     data,
+    fullWidth = true,
     name,
-    title,
+    required,
     showError = showErrorOnChange,
+    size,
+    title,
     ...restCheckboxes
   } = props;
   const itemsData: InputOptionData[] = data ? (!Array.isArray(data) ? [data] : data) : [{ label: '', value: name }];
@@ -35,30 +35,30 @@ export function CheckboxesField(props: CheckboxesFieldProps): ReactElement {
 
   return (
     <Label
-      title={title}
       error={typeof isError === 'string' ? isError : ''}
       fullWidth={fullWidth}
-      size={size}
       groupedElement={!single}
       required={required}
+      size={size}
+      title={title}
     >
       {itemsData.map((item, index) => (
         <Field
-          type="checkbox"
           key={`${name}-${index}`}
           name={name}
+          type="checkbox"
           value={single ? undefined : item.value}
           render={({ input: { name, value, onChange, checked, ...restInput } }) => (
             <InputOption
+              checked={checked}
+              disabled={item.disabled}
               inputType="checkbox"
               label={item.label}
               name={name}
-              value={value}
               onChange={onChange}
-              checked={checked}
-              disabled={item.disabled}
-              {...restInput}
+              value={value}
               {...restCheckboxes}
+              {...restInput}
             />
           )}
         />
