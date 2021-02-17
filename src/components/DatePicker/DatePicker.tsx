@@ -13,21 +13,28 @@ const DatePicker: FunctionComponent<DatePickerProps> = ({
   fullWidth = true,
   name,
   onChange,
+  placeholder,
   required,
   size = 'medium',
   title,
   value,
 }) => {
-  const [dateValue, setDateValue] = useState(moment().toDate());
+  const [dateValue, setDateValue] = useState<Date | undefined>(undefined);
   const dateInputClasses = [styles.inputElement];
   const wrapperClasses = [styles.inputWrapper, styles[size]];
 
   useEffect(() => {
-    const updatedDateValue = moment(value);
+    let currentValue: Date | undefined = undefined;
 
-    if (updatedDateValue.isValid()) {
-      setDateValue(updatedDateValue.toDate());
+    if (value) {
+      const updatedDateValue = moment(value);
+
+      if (updatedDateValue.isValid()) {
+        currentValue = updatedDateValue.toDate();
+      }
     }
+
+    setDateValue(currentValue);
   }, [value]);
 
   if (error) {
@@ -36,7 +43,15 @@ const DatePicker: FunctionComponent<DatePickerProps> = ({
 
   const handleDateChange = (value: Date): void => {
     setDateValue(value);
-    onChange && onChange(({ target: { name, value: value.getTime() } } as unknown) as ChangeEvent<HTMLInputElement>);
+
+    if (onChange) {
+      onChange(({
+        target: {
+          name,
+          value: value ? value.getTime() : '',
+        },
+      } as unknown) as ChangeEvent<HTMLInputElement>);
+    }
   };
 
   return (
@@ -55,6 +70,7 @@ const DatePicker: FunctionComponent<DatePickerProps> = ({
         dateFormat={DEFAULT_DATE_FORMAT}
         selected={dateValue}
         onChange={handleDateChange}
+        placeholderText={placeholder}
       />
     </Label>
   );

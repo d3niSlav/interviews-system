@@ -1,0 +1,46 @@
+@import 'src/assets/styles/colors';
+
+.label {
+  display: inline-block;
+  padding: 8px 6px 7px 2px;
+  color: #7f848c;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  vertical-align: middle;
+
+  &.checked,
+  &.selected {
+    color: $text-color;
+  }
+}
+
+.option {
+  display: block;
+
+  &:not(:last-child) {
+    margin-right: 5px;
+  }
+
+  &.inline {
+    display: inline-block;
+  }
+
+  &:hover,
+  &:focus {
+    outline: none;
+
+    .label {
+      color: $text-color;
+    }
+
+    ellipse[id='frame'] {
+      stroke: $accent-color-dark;
+    }
+
+    path[id='outline'] {
+      stroke: $accent-color-dark;
+      stroke-width: 1;
+    }
+  }
+}

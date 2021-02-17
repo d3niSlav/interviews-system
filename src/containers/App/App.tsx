@@ -1,85 +1,33 @@
 import React, { FunctionComponent } from 'react';
+import { Switch } from 'react-router';
+import { Redirect, Route } from 'react-router-dom';
 
-import Form from '../../components/Form';
-import Navigation from '../../components/Navigation';
+import FormTest from './FormTest';
+import Login from '../Auth/Login';
+import ProtectedRoute from '../../components/ProtectedRoute';
+import Recover from '../Auth/Recover';
+import Register from '../Auth/Register';
+import Reset from '../Auth/Reset';
 
-import './App.scss';
+const App: FunctionComponent = () => {
+  const isAuthenticated = true;
 
-const App: FunctionComponent = () => (
-  <>
-    <Navigation />
-    <header className="App-header">
-      <div style={{ width: '300px' }}>
-        <Form
-          id="example-form"
-          errors={{}}
-          initialValues={{
-            dateInput: 817122660000,
-          }}
-          config={{
-            textInput: {
-              label: 'Text input field',
-              placeholder: 'Enter some text...',
-              fieldType: 'text',
-              validations: {
-                required: {
-                  errorText: `This field is required!`,
-                },
-              },
-            },
-            textArea: {
-              label: 'Text area field',
-              placeholder: 'Enter some long text...',
-              fieldType: 'textarea',
-              rows: 5,
-            },
-            select: {
-              label: 'Select field',
-              placeholder: 'Choose an option...',
-              fieldType: 'select',
-              options: [
-                { value: 'option-1', label: 'Option 1' },
-                { value: 'option-2', label: 'Option 2' },
-                { value: 'option-3', label: 'Option 3' },
-              ],
-            },
-            radio: {
-              label: 'Radio buttons field',
-              placeholder: 'Choose an option...',
-              fieldType: 'radio',
-              inline: true,
-              value: 'option-1',
-              options: [
-                { value: 'option-1', label: 'Option 1' },
-                { value: 'option-2', label: 'Option 2' },
-                { value: 'option-3', label: 'Option 3' },
-              ],
-            },
-            checkboxes: {
-              label: 'Checkboxes field',
-              fieldType: 'checkbox',
-              inline: true,
-              options: [
-                { value: 'option-1', label: 'Option 1' },
-                { value: 'option-2', label: 'Option 2' },
-                { value: 'option-3', label: 'Option 3' },
-              ],
-            },
-            checkbox: {
-              title: 'Checkbox field',
-              label: 'Option text',
-              fieldType: 'checkbox',
-            },
-            dateInput: {
-              title: 'Date field',
-              fieldType: 'date',
-            },
-          }}
-          onSubmit={(data): void => alert(JSON.stringify(data, null, '\t'))}
-        />
-      </div>
-    </header>
-  </>
-);
+  return (
+    <Switch>
+      <Route path="/login" component={Login} />
+      <Route path="/recover" component={Recover} />
+      <Route path="/register" component={Register} />
+      <Route path="/reset" component={Reset} />
+      <ProtectedRoute
+        authenticationPath="login"
+        component={FormTest}
+        exact
+        isAuthenticated={isAuthenticated}
+        path="/"
+      />
+      <Redirect from="*" to="/" />
+    </Switch>
+  );
+};
 
 export default App;

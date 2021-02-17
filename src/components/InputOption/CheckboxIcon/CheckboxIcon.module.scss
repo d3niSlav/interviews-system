@@ -1,0 +1,42 @@
+@import 'src/assets/styles/colors';
+
+.checked {
+  path[id='check'] {
+    opacity: 1;
+  }
+
+  path[id='check-outline'] {
+    opacity: 1;
+  }
+
+  path[id='outline'] {
+    opacity: 0;
+    stroke-width: 1;
+  }
+
+  &:hover path[id='check-outline'] {
+    stroke: $accent-color-dark;
+  }
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  width: 30px;
+  vertical-align: middle;
+
+  svg {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+
+    path {
+      transition: stroke 0.2s, opacity 0.2s, stroke-width 0.2s;
+    }
+
+    &:hover path[id='outline'] {
+      stroke: $accent-color-dark;
+      stroke-width: 1;
+    }
+  }
+}

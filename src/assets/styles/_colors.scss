@@ -1,0 +1,13 @@
+$accent-color: #4870c0;
+$accent-color-dark: darken($accent-color, 10%);
+$text-color: #223263;
+$background-color: #fefeff;
+$background-contrast-color: #dbdde4;
+
+:root {
+  --accent-color: #{$accent-color};
+  --accent-color-dark: #{$accent-color-dark};
+  --text-color: #{$text-color};
+  --background-color: #{$background-color};
+  --background-contrast-color: #{$background-contrast-color};
+}

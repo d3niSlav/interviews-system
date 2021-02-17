@@ -1,6 +1,8 @@
 import { OptionTypeBase, Props, Props as ReactSelectProps, StylesConfig } from 'react-select';
 import { CSSProperties } from 'react';
 
+import { ACCENT_COLOR, ACCENT_COLOR_DARK, TEXT_COLOR } from '../../shared/constants';
+
 export type SelectProps = ReactSelectProps<SelectOptionType, boolean> & {
   errorMessage?: string;
   noOptionsText?: string;
@@ -16,7 +18,7 @@ export interface SelectOption {
 export type SelectOptionType = OptionTypeBase & SelectOption;
 
 export const getSelectCSSPropertiesOverrides = (menuIsOpen = false, isFocused = false, hasErrors = false): Props => {
-  const borderColor = menuIsOpen ? '#27262e' : hasErrors ? '#ff3e3e' : isFocused ? '#1d60ff' : '#6d7381';
+  const borderColor = menuIsOpen ? '#27262e' : hasErrors ? '#ff3e3e' : isFocused ? ACCENT_COLOR : '#6d7381';
 
   return {
     borderRadius: 0,
@@ -28,7 +30,7 @@ export const getSelectCSSPropertiesOverrides = (menuIsOpen = false, isFocused = 
     cursor: 'pointer',
     transition: 'background-color 0.2s, border-color 0.2s',
     '&:hover': {
-      borderColor: menuIsOpen ? '#27262e' : hasErrors ? '#a40000' : '#1f3e8c',
+      borderColor: menuIsOpen ? '#27262e' : hasErrors ? '#a40000' : ACCENT_COLOR_DARK,
     },
   };
 };
@@ -36,7 +38,7 @@ export const getSelectCSSPropertiesOverrides = (menuIsOpen = false, isFocused = 
 export const SELECT_CUSTOM_STYLES: StylesConfig<SelectOptionType, boolean> = {
   singleValue: (provided) => ({
     ...provided,
-    color: '#ffffff',
+    color: TEXT_COLOR,
     fontSize: '1rem',
   }),
   dropdownIndicator: (provided) => ({
@@ -45,7 +47,7 @@ export const SELECT_CUSTOM_STYLES: StylesConfig<SelectOptionType, boolean> = {
     cursor: 'pointer',
     transition: 'color 0.2s',
     '&:hover': {
-      color: '#ffffff',
+      color: TEXT_COLOR,
     },
   }),
   clearIndicator: (provided) => ({
@@ -55,7 +57,7 @@ export const SELECT_CUSTOM_STYLES: StylesConfig<SelectOptionType, boolean> = {
     cursor: 'pointer',
     transition: 'color 0.2s',
     '&:hover': {
-      color: '#ffffff',
+      color: TEXT_COLOR,
     },
   }),
   valueContainer: (provided) => ({
@@ -70,7 +72,7 @@ export const SELECT_CUSTOM_STYLES: StylesConfig<SelectOptionType, boolean> = {
   menu: (provided) => ({
     ...provided,
     margin: 0,
-    color: '#ffffff',
+    color: TEXT_COLOR,
     fontSize: '1rem',
     border: 'solid 1px #3a3e4f',
     borderRadius: 0,
@@ -89,7 +91,7 @@ export const SELECT_CUSTOM_STYLES: StylesConfig<SelectOptionType, boolean> = {
   multiValueLabel: (provided) => ({
     ...provided,
     paddingLeft: '11px',
-    color: '#ffffff',
+    color: TEXT_COLOR,
     fontSize: '1rem',
   }),
   multiValueRemove: (provided) => ({
@@ -98,12 +100,12 @@ export const SELECT_CUSTOM_STYLES: StylesConfig<SelectOptionType, boolean> = {
     paddingLeft: '2px',
     paddingRight: '11px',
     borderRadius: '0 13px 13px 0',
-    color: '#ffffff',
+    color: TEXT_COLOR,
     cursor: 'pointer',
     transition: 'background-color 0.2s',
     '&:hover': {
       backgroundColor: '#28272f',
-      color: '#ffffff',
+      color: TEXT_COLOR,
     },
   }),
   option: (provided, state) => ({

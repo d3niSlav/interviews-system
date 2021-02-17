@@ -27,7 +27,7 @@ const Input: FunctionComponent<InputProps> = ({
 
   return (
     <div className={elementWrapperClasses.join(' ')}>
-      <InputElement className={elementClasses.join(' ')} placeholder={placeholder} defaultValue={value} {...others} />
+      <InputElement className={elementClasses.join(' ')} placeholder={placeholder} value={value} {...others} />
     </div>
   );
 };

@@ -1,0 +1,66 @@
+.tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.content {
+  width: 100%;
+}
+
+.heading {
+  margin-bottom: 10px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 40px;
+  }
+}
+
+.formWrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+  padding-top: 30px;
+  padding-bottom: 10px;
+
+  @media screen and (min-width: 768px) {
+    align-items: flex-start;
+    width: 100%;
+  }
+}
+
+.form {
+  text-align: center;
+
+  @media screen and (min-width: 768px) {
+    max-width: 450px;
+    text-align: left;
+  }
+}
+
+.submitAction {
+  margin-top: 5px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 20px;
+  }
+}
+
+.imageWrapper {
+  display: flex;
+  max-width: 275px;
+  margin: 0 auto;
+  padding-top: 30px;
+
+  @media screen and (min-width: 768px) {
+    max-width: 100%;
+  }
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}

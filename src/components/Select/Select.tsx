@@ -23,7 +23,7 @@ const Select: FunctionComponent<SelectProps> = ({
   name,
   noOptionsMessage,
   noOptionsText,
-  onValueChanged,
+  onChange,
   options = [],
   placeholder,
   required,
@@ -47,10 +47,6 @@ const Select: FunctionComponent<SelectProps> = ({
       >)
     : undefined;
 
-  const handleOnChange = (selectedOption: ValueType<SelectOptionType, boolean>): void => {
-    name && onValueChanged && onValueChanged(name, selectedOption as SelectOptionType | SelectOptionType[]);
-  };
-
   return (
     <Label error={errorMessage} title={title} fullWidth required={required}>
       <div className={styles.selectWrapper}>
@@ -69,7 +65,7 @@ const Select: FunctionComponent<SelectProps> = ({
           required={required}
           noOptionsMessage={noOptionsText ? getNoOptionsText : noOptionsMessage}
           value={value}
-          onChange={handleOnChange}
+          onChange={onChange}
           openMenuOnFocus={true}
           tabSelectsValue={false}
         />
