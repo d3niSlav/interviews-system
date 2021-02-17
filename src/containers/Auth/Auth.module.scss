@@ -1,0 +1,29 @@
+.tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.content {
+  width: 100%;
+}
+
+.formWrapper {
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 30px 15px 10px;
+}
+
+.imageWrapper {
+  width: 80%;
+  max-width: 275px;
+  margin: 0 auto;
+  padding-top: 30px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}

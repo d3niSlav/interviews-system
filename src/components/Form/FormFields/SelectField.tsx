@@ -1,8 +1,9 @@
 import React, { ReactElement } from 'react';
 import { Field, FieldProps, FieldRenderProps } from 'react-final-form';
+import { ValueType } from 'react-select';
 
 import { ShowErrorFunc, showErrorOnChange, useFieldForErrors } from '../Form.helpers';
-import Select, { SelectProps } from '../../Select';
+import Select, { SelectOptionType, SelectProps } from '../../Select';
 
 export type SelectFieldProps = Partial<Omit<SelectProps, 'type' | 'onChange'>> & {
   name: string;
@@ -11,21 +12,22 @@ export type SelectFieldProps = Partial<Omit<SelectProps, 'type' | 'onChange'>> &
 };
 
 export function SelectField(props: SelectFieldProps): ReactElement {
-  const { name, isMulti: multiple, showError = showErrorOnChange, ...selectProps } = props;
+  const { name, isMulti: multiple, showError = showErrorOnChange, fieldProps, ...selectProps } = props;
   const field = useFieldForErrors(name);
   const isError = showError(field);
 
   return (
     <Field
       name={name}
-      render={({ input: { name, value, onChange, ...restSelect } }) => {
+      render={({ input: { name, value, onChange, ...restSelect }, meta }) => {
         const finalValue = multiple && !value ? [] : value;
+        const { error, submitError } = meta;
 
         return (
           <Select
             name={name}
-            error={isError}
-            value={finalValue}
+            errorMessage={isError ? error || submitError : ''}
+            value={finalValue as ValueType<SelectOptionType, boolean>}
             isMulti={multiple}
             onChange={onChange}
             {...restSelect}
@@ -33,6 +35,7 @@ export function SelectField(props: SelectFieldProps): ReactElement {
           />
         );
       }}
+      {...fieldProps}
     />
   );
 }

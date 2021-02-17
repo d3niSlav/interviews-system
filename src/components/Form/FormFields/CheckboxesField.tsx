@@ -2,10 +2,9 @@ import React, { ReactElement } from 'react';
 import { Field, FieldProps, FieldRenderProps } from 'react-final-form';
 
 import { ShowErrorFunc, showErrorOnChange, useFieldForErrors } from '../Form.helpers';
-import Label from '../../Label';
 import { BaseInputProps } from '../../Input';
-import { InputOptionData, InputOptionProps } from '../../InputOption/InputOption.constants';
-import InputOption from '../../InputOption/InputOption';
+import InputOption, { InputOptionData, InputOptionProps } from '../../InputOption';
+import Label from '../../Label';
 
 type InputOptionsProps = InputOptionProps &
   BaseInputProps & {
