@@ -7,9 +7,11 @@ import Button from '../../../components/Button';
 import { TextInputField, composeValidators, notEmpty } from '../../../components/FormFields';
 import Grid from '../../../components/Grid';
 import { post } from '../../../shared/api';
+import { LOGIN_ROUTE, REGISTER_ROUTE } from '../../../shared/constants';
 
 import styles from '../Auth.module.scss';
 import { ReactComponent as ResetPasswordIcon } from '../../../assets/images/svg/reset-password.svg';
+import { Link } from 'react-router-dom';
 
 const Reset: FunctionComponent = () => {
   const history = useHistory();
@@ -20,7 +22,7 @@ const Reset: FunctionComponent = () => {
 
     await post<void, ResetPasswordDto>(`/auth/reset${location.search}`, values)
       .then(() => {
-        history.push('/login');
+        history.push(LOGIN_ROUTE);
       })
       .catch((error) => {
         const customErrors = error.response.data.message;
@@ -34,7 +36,15 @@ const Reset: FunctionComponent = () => {
     <div className={styles.tile}>
       <Grid container className={styles.content}>
         <Grid item className={styles.imageWrapper} md={6}>
-          <ResetPasswordIcon className={styles.image} />
+          <div className="full-width">
+            <ResetPasswordIcon className={styles.image} />
+            <p className={styles.redirectLinkWrapper}>
+              Don&apos;t have an account?&nbsp;
+              <Link className="link" to={REGISTER_ROUTE}>
+                Sign up now!
+              </Link>
+            </p>
+          </div>
         </Grid>
         <Grid item className={styles.formWrapper} md={6}>
           <h1 className={`text-center color-accent ${styles.heading}`}>Set a new password</h1>
@@ -72,6 +82,12 @@ const Reset: FunctionComponent = () => {
               </form>
             )}
           />
+          <p className={styles.redirectLinkWrapperMobile}>
+            Don&apos;t have an account?&nbsp;
+            <Link className="link" to={REGISTER_ROUTE}>
+              Sign up now!
+            </Link>
+          </p>
         </Grid>
       </Grid>
     </div>

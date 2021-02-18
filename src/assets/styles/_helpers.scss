@@ -13,3 +13,14 @@
 .color-text {
   color: $text-color;
 }
+
+.link {
+  color: $accent-color;
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $accent-color-dark;
+    text-decoration: underline;
+  }
+}

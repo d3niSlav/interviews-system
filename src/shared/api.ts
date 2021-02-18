@@ -7,23 +7,15 @@ const api = axios.create({
   baseURL: API_BASE_URL,
 });
 
-const token = getJWTToken();
-if (token) {
-  api.defaults.headers['Authorization'] = `Bearer ${token}`;
-}
+api.interceptors.request.use((config: AxiosRequestConfig) => {
+  const token = getJWTToken();
 
-api.interceptors.request.use((param: AxiosRequestConfig) => ({
-  ...param,
-  baseURL: API_BASE_URL,
-}));
+  if (token) {
+    config.headers['Authorization'] = `Bearer ${token}`;
+  }
 
-export const getCurrentBearerHeader = (): string => {
-  return api.defaults.headers['Authorization'];
-};
-
-export const updateAxiosBearerToken = (newToken: string): void => {
-  api.defaults.headers['Authorization'] = `Bearer ${newToken}`;
-};
+  return config;
+});
 
 /**
  *

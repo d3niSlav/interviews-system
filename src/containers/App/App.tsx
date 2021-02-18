@@ -4,28 +4,35 @@ import { Redirect, Route } from 'react-router-dom';
 
 import FormTest from './FormTest';
 import Login from '../Auth/Login';
-import ProtectedRoute from '../../components/ProtectedRoute';
 import Recover from '../Auth/Recover';
 import Register from '../Auth/Register';
 import Reset from '../Auth/Reset';
+import ProtectedRoute from '../../components/ProtectedRoute';
+import {
+  HOME_ROUTE,
+  LOGIN_ROUTE,
+  RECOVER_PASSWORD_ROUTE,
+  REGISTER_ROUTE,
+  RESET_PASSWORD_ROUTE,
+} from '../../shared/constants';
 
 const App: FunctionComponent = () => {
-  const isAuthenticated = true;
+  const isAuthenticated = false;
 
   return (
     <Switch>
-      <Route path="/login" component={Login} />
-      <Route path="/recover" component={Recover} />
-      <Route path="/register" component={Register} />
-      <Route path="/reset" component={Reset} />
+      <Route path={LOGIN_ROUTE} component={Login} />
+      <Route path={RECOVER_PASSWORD_ROUTE} component={Recover} />
+      <Route path={REGISTER_ROUTE} component={Register} />
+      <Route path={RESET_PASSWORD_ROUTE} component={Reset} />
       <ProtectedRoute
-        authenticationPath="login"
+        authenticationPath={LOGIN_ROUTE}
         component={FormTest}
         exact
         isAuthenticated={isAuthenticated}
-        path="/"
+        path={HOME_ROUTE}
       />
-      <Redirect from="*" to="/" />
+      <Redirect from="*" to={HOME_ROUTE} />
     </Switch>
   );
 };

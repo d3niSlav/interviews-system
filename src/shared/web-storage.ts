@@ -1,4 +1,4 @@
-const JWT_TOKEN_COOKIE_NAME = process.env.REACT_APP_JWT_COOKIE_NAME || '';
+export const JWT_TOKEN_COOKIE_NAME = process.env.REACT_APP_JWT_COOKIE_NAME || '';
 
 export const getCookie = (cookieName: string): string => {
   if (typeof document === 'undefined') {

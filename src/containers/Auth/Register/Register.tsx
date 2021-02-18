@@ -1,12 +1,14 @@
 import React, { FunctionComponent } from 'react';
 import { Form } from 'react-final-form';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { RegisterDto } from './Register.dto';
 import Button from '../../../components/Button';
 import { TextInputField, composeValidators, notEmpty } from '../../../components/FormFields';
 import Grid from '../../../components/Grid';
 import { post } from '../../../shared/api';
+import { LOGIN_ROUTE } from '../../../shared/constants';
 
 import styles from '../Auth.module.scss';
 import { ReactComponent as RegisterIcon } from '../../../assets/images/svg/register.svg';
@@ -19,7 +21,7 @@ const Register: FunctionComponent = () => {
 
     await post<void, RegisterDto>('/auth/register', values)
       .then(() => {
-        history.push('/login');
+        history.push(LOGIN_ROUTE);
       })
       .catch((error) => {
         const customErrors = error.response.data.message;
@@ -34,7 +36,15 @@ const Register: FunctionComponent = () => {
     <div className={styles.tile}>
       <Grid container className={styles.content}>
         <Grid item className={styles.imageWrapper} md={6}>
-          <RegisterIcon className={styles.image} />
+          <div className="full-width">
+            <RegisterIcon className={styles.image} />
+            <p className={styles.redirectLinkWrapper}>
+              Already have an account?&nbsp;
+              <Link className="link" to={LOGIN_ROUTE}>
+                Sign in here!
+              </Link>
+            </p>
+          </div>
         </Grid>
         <Grid item className={styles.formWrapper} md={6}>
           <h1 className={`text-center color-accent ${styles.heading}`}>Register</h1>
@@ -99,6 +109,12 @@ const Register: FunctionComponent = () => {
                   text="Sign up"
                   type="submit"
                 />
+                <p className={styles.redirectLinkWrapperMobile}>
+                  Already have an account?&nbsp;
+                  <Link className="link" to={LOGIN_ROUTE}>
+                    Sign in here!
+                  </Link>
+                </p>
               </form>
             )}
           />

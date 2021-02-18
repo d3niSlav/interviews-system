@@ -1,26 +1,32 @@
 import React, { FunctionComponent } from 'react';
 import { Form } from 'react-final-form';
+import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { LoginDto, UserTokenDto } from './Login.dto';
 import Button from '../../../components/Button';
-import { TextInputField, composeValidators, notEmpty } from '../../../components/FormFields';
+import { composeValidators, notEmpty, TextInputField } from '../../../components/FormFields';
 import Grid from '../../../components/Grid';
 import { post } from '../../../shared/api';
+import { HOME_ROUTE, RECOVER_PASSWORD_ROUTE, REGISTER_ROUTE } from '../../../shared/constants';
+import { JWT_TOKEN_COOKIE_NAME, setCookie } from '../../../shared/web-storage';
 
 import styles from '../Auth.module.scss';
 import { ReactComponent as LoginIcon } from '../../../assets/images/svg/login.svg';
 
 const Login: FunctionComponent = () => {
+  const history = useHistory();
+
   const onSubmit = async (values: LoginDto) => {
     let errors = {};
 
     await post<UserTokenDto, LoginDto>('/auth/login', values)
-      .then((data) => {
-        // TODO set token to the store
-        alert(JSON.stringify(data, null, '\t'));
+      .then(({ access_token }) => {
+        setCookie(JWT_TOKEN_COOKIE_NAME, access_token);
+        history.push(HOME_ROUTE);
       })
       .catch((error) => {
-        errors = { email: error.response.data.message };
+        errors = { email: error?.response?.data?.message || error.message };
       });
 
     return errors;
@@ -30,7 +36,15 @@ const Login: FunctionComponent = () => {
     <div className={styles.tile}>
       <Grid container className={styles.content}>
         <Grid item className={styles.imageWrapper} md={6}>
-          <LoginIcon className={styles.image} />
+          <div className="full-width">
+            <LoginIcon className={styles.image} />
+            <p className={styles.redirectLinkWrapper}>
+              Don&apos;t have an account?&nbsp;
+              <Link className="link" to={REGISTER_ROUTE}>
+                Sign up now!
+              </Link>
+            </p>
+          </div>
         </Grid>
         <Grid item className={styles.formWrapper} md={6}>
           <h1 className={`text-center color-accent ${styles.heading}`}>Login</h1>
@@ -65,9 +79,18 @@ const Login: FunctionComponent = () => {
                   text="Sign in"
                   type="submit"
                 />
+                <Link className={`link ${styles.recoverLink}`} to={RECOVER_PASSWORD_ROUTE}>
+                  Recover password?
+                </Link>
               </form>
             )}
           />
+          <p className={styles.redirectLinkWrapperMobile}>
+            Don&apos;t have an account?&nbsp;
+            <Link className="link" to={REGISTER_ROUTE}>
+              Sign up now!
+            </Link>
+          </p>
         </Grid>
       </Grid>
     </div>

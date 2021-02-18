@@ -23,7 +23,7 @@
   justify-content: center;
   flex-direction: column;
   margin: 0 auto;
-  padding-top: 30px;
+  padding-top: 20px;
   padding-bottom: 10px;
 
   @media screen and (min-width: 768px) {
@@ -63,4 +63,36 @@
 .image {
   width: 100%;
   height: auto;
+  max-height: 400px;
+}
+
+.redirectLinkWrapperMobile {
+  margin: 15px auto 10px;
+  font-size: 12px;
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
+.recoverLink {
+  display: block;
+  margin-top: 15px;
+  font-size: 12px;
+
+  @media screen and (min-width: 768px) {
+    float: right;
+    font-size: 14px;
+    margin-top: 25px;
+  }
+}
+
+.redirectLinkWrapper {
+  display: none;
+  margin-top: 20px;
+  text-align: center;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
 }

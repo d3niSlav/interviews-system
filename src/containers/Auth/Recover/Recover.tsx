@@ -1,12 +1,14 @@
 import React, { FunctionComponent, useState } from 'react';
 import { Form } from 'react-final-form';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { RecoverPasswordDto } from './Recover.dto';
 import Button from '../../../components/Button';
 import { composeValidators, notEmpty, TextInputField } from '../../../components/FormFields';
 import Grid from '../../../components/Grid';
 import { post } from '../../../shared/api';
+import { REGISTER_ROUTE } from '../../../shared/constants';
 
 import styles from '../Auth.module.scss';
 import { ReactComponent as CheckEmailIcon } from '../../../assets/images/svg/check-email.svg';
@@ -39,7 +41,19 @@ const Recover: FunctionComponent = () => {
     <div className={styles.tile}>
       <Grid container className={styles.content}>
         <Grid item className={styles.imageWrapper} md={6}>
-          {isEmailSent ? <CheckEmailIcon className={styles.image} /> : <RecoverPasswordIcon className={styles.image} />}
+          <div className="full-width">
+            {isEmailSent ? (
+              <CheckEmailIcon className={styles.image} />
+            ) : (
+              <RecoverPasswordIcon className={styles.image} />
+            )}
+            <p className={styles.redirectLinkWrapper}>
+              Don&apos;t have an account?&nbsp;
+              <Link className="link" to={REGISTER_ROUTE}>
+                Sign up now!
+              </Link>
+            </p>
+          </div>
         </Grid>
         <Grid item className={styles.formWrapper} md={6}>
           {isEmailSent ? (
@@ -79,6 +93,12 @@ const Recover: FunctionComponent = () => {
               />
             </>
           )}
+          <p className={styles.redirectLinkWrapperMobile}>
+            Don&apos;t have an account?&nbsp;
+            <Link className="link" to={REGISTER_ROUTE}>
+              Sign up now!
+            </Link>
+          </p>
         </Grid>
       </Grid>
     </div>
