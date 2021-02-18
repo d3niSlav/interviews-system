@@ -5,7 +5,9 @@ export const ACCENT_COLOR_DARK = '#1f3e8c';
 
 export const BACKGROUND_COLOR = '#fefeff';
 
-export const BACKGROUND_CONTRAST_COLOR = '#e3e3e2';
+export const BACKGROUND_CONTRAST_COLOR = '#dbdde4';
+
+export const BACKGROUND_CONTRAST_DARK_COLOR = '#bec1ce';
 
 export const TEXT_COLOR = '#223263';
 

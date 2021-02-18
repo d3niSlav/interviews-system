@@ -17,7 +17,7 @@ import {
 } from '../../shared/constants';
 
 const App: FunctionComponent = () => {
-  const isAuthenticated = false;
+  const isAuthenticated = true;
 
   return (
     <Switch>

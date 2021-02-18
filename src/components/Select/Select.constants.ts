@@ -1,7 +1,14 @@
 import { OptionTypeBase, Props, Props as ReactSelectProps, StylesConfig } from 'react-select';
 import { CSSProperties } from 'react';
 
-import { ACCENT_COLOR, ACCENT_COLOR_DARK, TEXT_COLOR } from '../../shared/constants';
+import {
+  ACCENT_COLOR,
+  ACCENT_COLOR_DARK,
+  BACKGROUND_COLOR,
+  BACKGROUND_CONTRAST_COLOR,
+  BACKGROUND_CONTRAST_DARK_COLOR,
+  TEXT_COLOR,
+} from '../../shared/constants';
 
 export type SelectProps = ReactSelectProps<SelectOptionType, boolean> & {
   errorMessage?: string;
@@ -18,19 +25,25 @@ export interface SelectOption {
 export type SelectOptionType = OptionTypeBase & SelectOption;
 
 export const getSelectCSSPropertiesOverrides = (menuIsOpen = false, isFocused = false, hasErrors = false): Props => {
-  const borderColor = menuIsOpen ? '#27262e' : hasErrors ? '#ff3e3e' : isFocused ? ACCENT_COLOR : '#6d7381';
+  const borderColor = menuIsOpen
+    ? BACKGROUND_CONTRAST_COLOR
+    : hasErrors
+    ? '#ff3e3e'
+    : isFocused
+    ? ACCENT_COLOR
+    : '#6d7381';
 
   return {
     borderRadius: 0,
     border: 0,
     borderBottom: `2px solid ${borderColor}`,
     borderColor,
-    backgroundColor: menuIsOpen || isFocused ? '#27262e' : 'transparent',
+    backgroundColor: menuIsOpen || isFocused ? BACKGROUND_CONTRAST_COLOR : 'transparent',
     boxShadow: menuIsOpen || isFocused ? '0 4px 11px 0 rgba(0, 0, 0, 0.12)' : 'none',
     cursor: 'pointer',
     transition: 'background-color 0.2s, border-color 0.2s',
     '&:hover': {
-      borderColor: menuIsOpen ? '#27262e' : hasErrors ? '#a40000' : ACCENT_COLOR_DARK,
+      borderColor: menuIsOpen ? ACCENT_COLOR_DARK : hasErrors ? '#a40000' : ACCENT_COLOR_DARK,
     },
   };
 };
@@ -43,21 +56,21 @@ export const SELECT_CUSTOM_STYLES: StylesConfig<SelectOptionType, boolean> = {
   }),
   dropdownIndicator: (provided) => ({
     ...provided,
-    color: '#b4b6bb',
+    color: TEXT_COLOR,
     cursor: 'pointer',
     transition: 'color 0.2s',
     '&:hover': {
-      color: TEXT_COLOR,
+      color: ACCENT_COLOR_DARK,
     },
   }),
   clearIndicator: (provided) => ({
     ...provided,
-    color: '#b4b6bb',
+    color: TEXT_COLOR,
     fontSize: '1rem',
     cursor: 'pointer',
     transition: 'color 0.2s',
     '&:hover': {
-      color: TEXT_COLOR,
+      color: ACCENT_COLOR_DARK,
     },
   }),
   valueContainer: (provided) => ({
@@ -74,10 +87,10 @@ export const SELECT_CUSTOM_STYLES: StylesConfig<SelectOptionType, boolean> = {
     margin: 0,
     color: TEXT_COLOR,
     fontSize: '1rem',
-    border: 'solid 1px #3a3e4f',
+    border: `1px solid ${BACKGROUND_CONTRAST_DARK_COLOR}`,
     borderRadius: 0,
-    boxShadow: '0 2px 15px 0 rgba(25, 22, 32, 0.52), 0 2px 4px 0 rgba(0, 0, 0, 0.5)',
-    backgroundColor: '#28272f',
+    boxShadow: '0 4px 12px 0 rgba(0, 0, 0, 0.12)',
+    backgroundColor: BACKGROUND_CONTRAST_COLOR,
   }),
   menuList: (provided) => ({
     ...provided,
@@ -86,7 +99,8 @@ export const SELECT_CUSTOM_STYLES: StylesConfig<SelectOptionType, boolean> = {
   multiValue: (provided) => ({
     ...provided,
     borderRadius: '13px',
-    backgroundColor: '#515562',
+    border: `1px solid ${BACKGROUND_CONTRAST_DARK_COLOR}`,
+    backgroundColor: BACKGROUND_COLOR,
   }),
   multiValueLabel: (provided) => ({
     ...provided,
@@ -104,14 +118,18 @@ export const SELECT_CUSTOM_STYLES: StylesConfig<SelectOptionType, boolean> = {
     cursor: 'pointer',
     transition: 'background-color 0.2s',
     '&:hover': {
-      backgroundColor: '#28272f',
-      color: TEXT_COLOR,
+      backgroundColor: BACKGROUND_CONTRAST_COLOR,
+      color: ACCENT_COLOR_DARK,
     },
   }),
   option: (provided, state) => ({
     ...provided,
     padding: '10px 6px',
-    backgroundColor: state.isFocused ? '#23232a' : state.isSelected ? '#1a1721' : provided.backgroundColor,
+    backgroundColor: state.isFocused
+      ? BACKGROUND_CONTRAST_DARK_COLOR
+      : state.isSelected
+      ? ACCENT_COLOR
+      : provided.backgroundColor,
     transition: 'background-color 0.2s',
     cursor: 'pointer',
   }),

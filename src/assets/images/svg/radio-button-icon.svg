@@ -9,9 +9,9 @@
         <ellipse id="prefix__a" cx="5" cy="4.946" rx="5" ry="4.946"/>
     </defs>
     <g fill="none" fill-rule="evenodd" transform="translate(3 3)">
-        <use fill="#3D3C45" xlink:href="#prefix__a"/>
+        <use fill="#dbdde4" xlink:href="#prefix__a"/>
         <use fill="#000" filter="url(#prefix__b)" xlink:href="#prefix__a"/>
-        <circle id="dot" opacity="0" cx="5" cy="5" r="2" fill="#1d60ff" />
+        <circle id="dot" opacity="0" cx="5" cy="5" r="2" fill="#4870c0" />
         <ellipse id="frame" cx="5" cy="4.946" stroke="#7F848C" stroke-linejoin="bevel" stroke-width=".5" rx="4.75" ry="4.696"/>
     </g>
 </svg>

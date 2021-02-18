@@ -3,20 +3,21 @@
 .label {
   display: inline-block;
   padding: 8px 6px 7px 2px;
-  color: #7f848c;
+  color: $text-color;
   font-size: 0.9rem;
-  cursor: pointer;
   transition: color 0.2s ease;
   vertical-align: middle;
 
   &.checked,
   &.selected {
-    color: $text-color;
+    color: darken($text-color, 10%);
   }
 }
 
 .option {
   display: block;
+  cursor: pointer;
+  transition: background-color 0.2s;
 
   &:not(:last-child) {
     margin-right: 5px;
@@ -28,6 +29,8 @@
 
   &:hover,
   &:focus {
+    background-color: $background-contrast-color;
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.12);
     outline: none;
 
     .label {
