@@ -6,6 +6,7 @@ import {
   CheckboxesField,
   composeValidators,
   DatePickerField,
+  FormError,
   maxValue,
   minValue,
   mustBeNumber,
@@ -16,8 +17,10 @@ import {
   TextAreaField,
   TextInputField,
 } from '../../components/FormFields';
-import Navigation from '../../components/Navigation';
 import Grid from '../../components/Grid';
+import { InputOptionData } from '../../components/InputOption';
+import Navigation from '../../components/Navigation';
+import { SelectOptionType } from '../../components/Select';
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -26,28 +29,50 @@ const onSubmit = async (values: unknown) => {
   alert(JSON.stringify(values, null, '\t'));
 };
 
+interface FormTestValues {
+  firstName: string;
+  lastName: string;
+  age: number;
+  date: number;
+  favoriteColor: SelectOptionType;
+  toppings: SelectOptionType[];
+  sauces: InputOptionData[];
+  employed: boolean;
+  things: InputOptionData[];
+  notes: string;
+}
+
 const FormTest: FunctionComponent = () => {
   return (
     <>
       <Navigation />
-      <div style={{ paddingLeft: '60px', paddingTop: '15px' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          minHeight: '100vh',
+          paddingLeft: '60px',
+          paddingTop: '15px',
+        }}
+      >
         <Grid container>
           <Form
             onSubmit={onSubmit}
             initialValues={{
               date: Date.now(),
             }}
-            validate={(values: any) => {
-              const errors: any = {};
+            validate={(values: FormTestValues) => {
+              const errors: FormError = {};
 
               if (!values.toppings || (Array.isArray(values.toppings) && values.toppings.length === 0)) {
-                errors.toppings = 'Required';
+                errors.toppings = 'Select at least one topping!';
               }
 
               return errors;
             }}
             render={({ handleSubmit, form, submitting, valid, pristine, values }) => (
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} className="full-width">
                 <Grid container>
                   <Grid item md={8}>
                     <Grid container>
@@ -58,7 +83,7 @@ const FormTest: FunctionComponent = () => {
                           placeholder="Enter first name..."
                           required
                           fieldProps={{
-                            validate: composeValidators(required('Nema go'), notEmpty()),
+                            validate: composeValidators(required(), notEmpty()),
                           }}
                         />
                       </Grid>
@@ -82,7 +107,7 @@ const FormTest: FunctionComponent = () => {
                     <DatePickerField title="Date" name="date" placeholder="Enter a date" />
                     <SelectField
                       title="Favorite color"
-                      name="favorite-color"
+                      name="favoriteColor"
                       options={[
                         { label: '❤️ Red', value: '#ff0000' },
                         { label: '💚 Green', value: '#00ff00' },
@@ -115,7 +140,7 @@ const FormTest: FunctionComponent = () => {
                         { label: '🍍 Pineapple', value: 'pineapple' },
                       ]}
                     />
-                    <CheckboxesField title="Employed" name="employed" />
+                    <CheckboxesField title="Employed" name="employed" label="I agree to this!" />
                     <CheckboxesField
                       title="Things"
                       name="things"
@@ -136,7 +161,7 @@ const FormTest: FunctionComponent = () => {
                       <Button text="Reset" outlined onClick={form.reset} disabled={submitting || pristine} />
                     </div>
                   </Grid>
-                  <Grid item xs={4}>
+                  <Grid item xs={3}>
                     <div style={{ fontSize: '18px', whiteSpace: 'pre-wrap' }}>
                       <pre>{JSON.stringify(values, null, '\t')}</pre>
                     </div>

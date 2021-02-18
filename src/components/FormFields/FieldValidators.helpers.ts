@@ -7,6 +7,9 @@ export const notEmpty = (errorMessage = 'This field cannot be empty!') => (value
 export const mustBeNumber = (errorMessage = 'This field requires a number!') => (value: number): string | undefined =>
   isNaN(value) ? errorMessage : undefined;
 
+export const isEmail = (errorMessage = 'Please, enter a valid email!') => (value: string): string | undefined =>
+  /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(value) ? undefined : errorMessage;
+
 export const minValue = (min: number, errorMessage?: string) => (value: number): string | undefined =>
   isNaN(value) || value >= min ? undefined : errorMessage || `Should be greater than ${min}!`;
 
@@ -18,6 +21,10 @@ export const minLength = (min: number, errorMessage?: string) => (value: string)
 
 export const maxLength = (max: number, errorMessage?: string) => (value: string): string | undefined =>
   value && value.trim().length <= max ? undefined : errorMessage || `Should be less than ${max} characters!`;
+
+export const matchRegex = (regexRule: RegExp, errorMessage = 'Should follow the required pattern!') => (
+  value: string,
+): string | undefined => (regexRule.test(value) ? undefined : errorMessage);
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const composeValidators = (...validators: any[]) => (value: unknown): string | undefined =>

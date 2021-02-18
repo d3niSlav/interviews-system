@@ -6,6 +6,10 @@ export interface ShowErrorProps {
   meta: FieldMetaState<unknown>;
 }
 
+export interface FormError {
+  [key: string]: string | string[];
+}
+
 export const showErrorOnChange: ShowErrorFunc = ({
   meta: { submitError, dirtySinceLastSubmit, error, touched, modified },
 }: ShowErrorProps) => !!(((submitError && !dirtySinceLastSubmit) || error) && (touched || modified));

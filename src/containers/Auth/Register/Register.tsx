@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { RegisterDto } from './Register.dto';
 import Button from '../../../components/Button';
-import { TextInputField, composeValidators, notEmpty } from '../../../components/FormFields';
+import { TextInputField, composeValidators, notEmpty, isEmail } from '../../../components/FormFields';
 import Grid from '../../../components/Grid';
 import { post } from '../../../shared/api';
 import { LOGIN_ROUTE } from '../../../shared/constants';
@@ -60,7 +60,7 @@ const Register: FunctionComponent = () => {
 
               return errors;
             }}
-            render={({ handleSubmit, form, submitting, pristine }) => (
+            render={({ handleSubmit, submitting, pristine }) => (
               <form onSubmit={handleSubmit} className={`full-width ${styles.form}`}>
                 <TextInputField
                   title="Name"
@@ -78,7 +78,7 @@ const Register: FunctionComponent = () => {
                   placeholder="Enter email..."
                   required
                   fieldProps={{
-                    validate: composeValidators(notEmpty('Please, enter your email!')),
+                    validate: composeValidators(notEmpty('Please, enter your email!'), isEmail()),
                   }}
                 />
                 <TextInputField

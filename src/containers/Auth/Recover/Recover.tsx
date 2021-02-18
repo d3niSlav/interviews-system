@@ -60,7 +60,7 @@ const Recover: FunctionComponent = () => {
             <div className="text-center">
               <h1 className={`text-center color-accent ${styles.heading}`}>Recover password email sent</h1>
               <div className="text-center">
-                <p className="color-text">Check you email address in order to proceed with your password recovery</p>
+                <p className="color-text">Check you email address in order to proceed with your password recovery.</p>
                 <br />
                 <Button className={styles.submitAction} text="Go back" type="button" onClick={handleGoBackClick} />
               </div>

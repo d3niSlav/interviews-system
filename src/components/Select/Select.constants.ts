@@ -8,6 +8,7 @@ import {
   BACKGROUND_CONTRAST_COLOR,
   BACKGROUND_CONTRAST_DARK_COLOR,
   TEXT_COLOR,
+  TEXT_WHITE,
 } from '../../shared/constants';
 
 export type SelectProps = ReactSelectProps<SelectOptionType, boolean> & {
@@ -111,15 +112,18 @@ export const SELECT_CUSTOM_STYLES: StylesConfig<SelectOptionType, boolean> = {
   multiValueRemove: (provided) => ({
     ...provided,
     marginLeft: '2px',
-    paddingLeft: '2px',
-    paddingRight: '11px',
-    borderRadius: '0 13px 13px 0',
+    padding: '0 6px',
+    border: `1px solid ${BACKGROUND_CONTRAST_DARK_COLOR}`,
+    borderRight: 0,
+    borderBottom: 0,
+    borderTop: 0,
+    borderRadius: '13px',
     color: TEXT_COLOR,
     cursor: 'pointer',
-    transition: 'background-color 0.2s',
+    transition: 'background-color 0.2s, color 0.2s',
     '&:hover': {
-      backgroundColor: BACKGROUND_CONTRAST_COLOR,
-      color: ACCENT_COLOR_DARK,
+      backgroundColor: ACCENT_COLOR_DARK,
+      color: TEXT_WHITE,
     },
   }),
   option: (provided, state) => ({
