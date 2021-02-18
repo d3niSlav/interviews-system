@@ -12,7 +12,6 @@ import Label from '../Label';
 import styles from './Select.module.scss';
 
 const Select: FunctionComponent<SelectProps> = ({
-  autoFocus = false,
   className,
   classNamePrefix,
   defaultOption,
@@ -29,6 +28,7 @@ const Select: FunctionComponent<SelectProps> = ({
   required,
   title,
   value,
+  ...rest
 }) => {
   const getNoOptionsText = (): string | null => (noOptionsText ? noOptionsText : null);
 
@@ -52,7 +52,6 @@ const Select: FunctionComponent<SelectProps> = ({
       <div className={styles.selectWrapper}>
         <ReactSelect<SelectOptionType, boolean>
           styles={selectStyles}
-          autoFocus={autoFocus}
           className={className}
           classNamePrefix={classNamePrefix}
           defaultValue={defaultSelectedOption}
@@ -68,6 +67,7 @@ const Select: FunctionComponent<SelectProps> = ({
           onChange={onChange}
           openMenuOnFocus={true}
           tabSelectsValue={false}
+          {...rest}
         />
       </div>
     </Label>

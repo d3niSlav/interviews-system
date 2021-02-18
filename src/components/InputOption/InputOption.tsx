@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FunctionComponent, KeyboardEvent } from 'react';
+import React, { FunctionComponent } from 'react';
 
 import CheckboxIcon from './CheckboxIcon';
 import { InputOptionProps } from './InputOption.constants';
@@ -26,21 +26,8 @@ const InputOption: FunctionComponent<InputOptionProps> = ({
     labelClasses.push(styles.checked);
   }
 
-  const handleKeyPress = (event: KeyboardEvent<HTMLLabelElement>): void => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    onChange &&
-      onChange({
-        target: {
-          name: name,
-          checked: !checked,
-        },
-      } as ChangeEvent<HTMLInputElement>);
-  };
-
   return (
-    <label tabIndex={0} onKeyPress={handleKeyPress} className={inputOptionClasses.join(' ')}>
+    <label className={inputOptionClasses.join(' ')}>
       <input hidden type={inputType} name={name} checked={checked} aria-label={label} onChange={onChange} {...rest} />
       {inputType === 'checkbox' ? <CheckboxIcon isChecked={checked} /> : <RadioButtonIcon isSelected={checked} />}
       {label && (

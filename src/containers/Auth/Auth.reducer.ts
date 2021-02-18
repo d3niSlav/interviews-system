@@ -8,7 +8,7 @@ const initialState: AuthState = {
   user: null,
 };
 
-export default (state = initialState, action: AuthActionTypes): AuthState => {
+const authReducer = (state = initialState, action: AuthActionTypes): AuthState => {
   switch (action.type) {
     case INITIALIZE_USER: {
       const userToken = getJWTToken();
@@ -37,3 +37,5 @@ export default (state = initialState, action: AuthActionTypes): AuthState => {
     }
   }
 };
+
+export default authReducer;

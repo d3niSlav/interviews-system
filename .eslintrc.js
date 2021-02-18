@@ -7,12 +7,15 @@ module.exports = {
       jsx: true,
     },
   },
+  plugins: ['jsx-a11y'],
   settings: {
     react: {
       version: 'detect',
     },
   },
   extends: [
+    'react-app',
+    'plugin:jsx-a11y/recommended',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'prettier/@typescript-eslint',
