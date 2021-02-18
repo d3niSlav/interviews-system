@@ -6,6 +6,13 @@
   width: 100%;
 }
 
+.flex-center {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .color-accent {
   color: $accent-color;
 }

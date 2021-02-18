@@ -5,6 +5,7 @@ import { ButtonProps } from './Button.constants';
 import styles from './Button.module.scss';
 
 const Button: FunctionComponent<ButtonProps> = ({
+  className,
   disabled = false,
   fullWidth = false,
   onClick,
@@ -12,7 +13,6 @@ const Button: FunctionComponent<ButtonProps> = ({
   size = 'medium',
   text,
   type = 'button',
-  className,
   ...others
 }) => {
   const buttonClasses = [styles.button, styles[size]];

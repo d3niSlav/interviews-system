@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import { API_BASE_URL } from './api.config';
+import { SERVICE_UNAVAILABLE_ROUTE } from './constants';
 import { getJWTToken } from './web-storage';
 
 const api = axios.create({
@@ -42,6 +43,10 @@ const success = <T>(response: AxiosResponse<T>): T => {
 };
 
 const error = (error: AxiosError<Error>): AxiosError<Error> => {
+  if (!error.response) {
+    redirectUserToServerUnavailable();
+  }
+
   throw error;
 };
 
@@ -99,4 +104,10 @@ export const put = <T, B>(url: string, data?: B, config?: AxiosRequestConfig): P
  */
 export const del = <T>(url: string, config?: AxiosRequestConfig): Promise<T> => {
   return api.delete(url, config).then(success).catch(error);
+};
+
+export const redirectUserToServerUnavailable = (): void => {
+  if (typeof window !== 'undefined') {
+    window.location.href = SERVICE_UNAVAILABLE_ROUTE;
+  }
 };

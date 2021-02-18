@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { Form } from 'react-final-form';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 
@@ -13,8 +14,10 @@ import { JWT_TOKEN_COOKIE_NAME, setCookie } from '../../../shared/web-storage';
 
 import styles from '../Auth.module.scss';
 import { ReactComponent as LoginIcon } from '../../../assets/images/svg/login.svg';
+import { setUserFromTokenAction } from '../Auth.actions';
 
 const Login: FunctionComponent = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const onSubmit = async (values: LoginDto) => {
@@ -23,6 +26,7 @@ const Login: FunctionComponent = () => {
     await post<UserTokenDto, LoginDto>('/auth/login', values)
       .then(({ access_token }) => {
         setCookie(JWT_TOKEN_COOKIE_NAME, access_token);
+        dispatch(setUserFromTokenAction(access_token));
         history.push(HOME_ROUTE);
       })
       .catch((error) => {
@@ -51,7 +55,7 @@ const Login: FunctionComponent = () => {
           <br />
           <Form
             onSubmit={onSubmit}
-            render={({ handleSubmit, form, submitting, pristine }) => (
+            render={({ handleSubmit, submitting, pristine }) => (
               <form onSubmit={handleSubmit} className={`full-width ${styles.form}`}>
                 <TextInputField
                   title="Email"

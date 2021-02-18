@@ -23,3 +23,7 @@ export const REGISTER_ROUTE = '/register';
 export const RECOVER_PASSWORD_ROUTE = '/recover';
 
 export const RESET_PASSWORD_ROUTE = '/reset';
+
+export const NOT_FOUND_ROUTE = '/404';
+
+export const SERVICE_UNAVAILABLE_ROUTE = '/service-unavailable';

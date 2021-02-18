@@ -1,0 +1,33 @@
+.wrapper {
+  width: 100%;
+  padding: 15px;
+  margin-top: 33%;
+  text-align: center;
+
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    top: 50%;
+    margin: 0 auto;
+    transform: translateY(-50%);
+  }
+}
+
+.icon {
+  max-width: 1000px;
+  width: 100%;
+  height: auto;
+}
+
+.message {
+  width: 80%;
+  margin: 40px auto 10px;
+  text-align: center;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 20px;
+  }
+}
+
+.action {
+  margin-top: 20px;
+}
