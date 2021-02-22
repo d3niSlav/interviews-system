@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { Form } from 'react-final-form';
 import { useHistory, useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { ResetPasswordDto } from './Reset.dto';
 import Button from '../../../components/Button';
@@ -8,10 +9,10 @@ import { TextInputField, composeValidators, notEmpty } from '../../../components
 import Grid from '../../../components/Grid';
 import { post } from '../../../shared/api';
 import { LOGIN_ROUTE, REGISTER_ROUTE } from '../../../shared/constants';
+import { mapRequestErrors } from '../../../shared/helpers';
 
 import styles from '../Auth.module.scss';
 import { ReactComponent as ResetPasswordIcon } from '../../../assets/images/svg/reset-password.svg';
-import { Link } from 'react-router-dom';
 
 const Reset: FunctionComponent = () => {
   const history = useHistory();
@@ -25,8 +26,7 @@ const Reset: FunctionComponent = () => {
         history.push(LOGIN_ROUTE);
       })
       .catch((error) => {
-        const customErrors = error.response.data.message;
-        errors = { password: Array.isArray(customErrors) ? customErrors[0] : customErrors };
+        errors = { ...mapRequestErrors(error.response.data, 'password') };
       });
 
     return errors;

@@ -5,16 +5,17 @@ import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 
 import { LoginDto, UserTokenDto } from './Login.dto';
+import { setUserFromTokenAction } from '../Auth.actions';
 import Button from '../../../components/Button';
 import { composeValidators, notEmpty, TextInputField } from '../../../components/FormFields';
 import Grid from '../../../components/Grid';
 import { post } from '../../../shared/api';
 import { HOME_ROUTE, RECOVER_PASSWORD_ROUTE, REGISTER_ROUTE } from '../../../shared/constants';
 import { JWT_TOKEN_COOKIE_NAME, setCookie } from '../../../shared/web-storage';
+import { mapRequestErrors } from '../../../shared/helpers';
 
 import styles from '../Auth.module.scss';
 import { ReactComponent as LoginIcon } from '../../../assets/images/svg/login.svg';
-import { setUserFromTokenAction } from '../Auth.actions';
 
 const Login: FunctionComponent = () => {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const Login: FunctionComponent = () => {
         history.push(HOME_ROUTE);
       })
       .catch((error) => {
-        errors = { email: error?.response?.data?.message || error.message };
+        errors = { ...mapRequestErrors(error.response.data, 'email') };
       });
 
     return errors;

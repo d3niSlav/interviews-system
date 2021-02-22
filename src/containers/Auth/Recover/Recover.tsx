@@ -9,6 +9,7 @@ import { composeValidators, notEmpty, TextInputField } from '../../../components
 import Grid from '../../../components/Grid';
 import { post } from '../../../shared/api';
 import { REGISTER_ROUTE } from '../../../shared/constants';
+import { mapRequestErrors } from '../../../shared/helpers';
 
 import styles from '../Auth.module.scss';
 import { ReactComponent as CheckEmailIcon } from '../../../assets/images/svg/check-email.svg';
@@ -26,8 +27,7 @@ const Recover: FunctionComponent = () => {
         setIsEmailSent(true);
       })
       .catch((error) => {
-        const customErrors = error.response.data.message;
-        errors = { email: Array.isArray(customErrors) ? customErrors[0] : customErrors };
+        errors = { ...mapRequestErrors(error.response.data, 'email') };
       });
 
     return errors;

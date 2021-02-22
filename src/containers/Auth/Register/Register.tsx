@@ -9,6 +9,7 @@ import { TextInputField, composeValidators, notEmpty, isEmail } from '../../../c
 import Grid from '../../../components/Grid';
 import { post } from '../../../shared/api';
 import { LOGIN_ROUTE } from '../../../shared/constants';
+import { mapRequestErrors } from '../../../shared/helpers';
 
 import styles from '../Auth.module.scss';
 import { ReactComponent as RegisterIcon } from '../../../assets/images/svg/register.svg';
@@ -24,9 +25,7 @@ const Register: FunctionComponent = () => {
         history.push(LOGIN_ROUTE);
       })
       .catch((error) => {
-        const customErrors = error.response.data.message;
-        // TODO add error handling
-        errors = { password: Array.isArray(customErrors) ? customErrors[0] : customErrors };
+        errors = { ...mapRequestErrors(error.response.data) };
       });
 
     return errors;
