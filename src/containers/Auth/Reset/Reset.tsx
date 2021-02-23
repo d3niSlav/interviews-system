@@ -51,6 +51,15 @@ const Reset: FunctionComponent = () => {
           <br />
           <Form
             onSubmit={onSubmit}
+            validate={(values: ResetPasswordDto) => {
+              const errors: ResetPasswordDto = {} as ResetPasswordDto;
+
+              if (values.confirmPassword && values.password && values.confirmPassword !== values.password) {
+                errors.confirmPassword = 'Password does not match!';
+              }
+
+              return errors;
+            }}
             render={({ handleSubmit, form, submitting, pristine }) => (
               <form onSubmit={handleSubmit} className={`full-width ${styles.form}`}>
                 <TextInputField
