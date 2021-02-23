@@ -9,9 +9,6 @@ const TextInputStory: Story<TextInputProps> = (args) => <TextInput {...args} />;
 export default {
   title: 'Text input',
   component: TextInput,
-  parameters: {
-    backgrounds: { default: 'dark' },
-  },
   argTypes: {
     title: { control: 'text' },
     disabled: { control: 'boolean' },

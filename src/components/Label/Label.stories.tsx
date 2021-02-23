@@ -9,9 +9,6 @@ const LabelStory: Story<LabelProps> = (args) => <Label {...args} />;
 export default {
   title: 'Label',
   component: Label,
-  parameters: {
-    backgrounds: { default: 'dark' },
-  },
   argTypes: {
     fullWidth: { control: 'boolean' },
     size: { control: { type: 'select', options: ['small', 'medium', 'large'] } },

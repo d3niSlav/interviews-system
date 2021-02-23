@@ -16,9 +16,6 @@ const SelectStory: Story<SelectProps> = (args) => <Select {...args} />;
 export default {
   title: 'Select',
   component: Select,
-  parameters: {
-    backgrounds: { default: 'dark' },
-  },
   argTypes: {
     title: { control: 'text' },
     errorMessage: { control: 'text' },

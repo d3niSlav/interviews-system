@@ -9,9 +9,6 @@ const TextAreaStory: Story<TextAreaProps> = (args) => <TextArea {...args} />;
 export default {
   title: 'Text area',
   component: TextArea,
-  parameters: {
-    backgrounds: { default: 'dark' },
-  },
   argTypes: {
     title: { control: 'text' },
     disabled: { control: 'boolean' },
