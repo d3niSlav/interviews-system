@@ -139,7 +139,7 @@ export const SELECT_CUSTOM_STYLES: StylesConfig<SelectOptionType, boolean> = {
   }),
   placeholder: (provided) => ({
     ...provided,
-    color: '#7f848c',
+    color: '#545454',
     fontSize: '14px',
   }),
 };

@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useState } from 'react';
 import { Form } from 'react-final-form';
+import { Helmet } from 'react-helmet-async';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 
@@ -38,70 +39,75 @@ const Recover: FunctionComponent = () => {
   };
 
   return (
-    <div className={styles.tile}>
-      <Grid container className={styles.content}>
-        <Grid item className={styles.imageWrapper} md={6}>
-          <div className="full-width">
+    <>
+      <Helmet>
+        <title>{isEmailSent ? 'Check your email' : 'Recover password'} | Expooze</title>
+      </Helmet>
+      <div className={styles.tile}>
+        <Grid container className={styles.content}>
+          <Grid item className={styles.imageWrapper} md={6}>
+            <div className="full-width">
+              {isEmailSent ? (
+                <CheckEmailIcon className={styles.image} />
+              ) : (
+                <RecoverPasswordIcon className={styles.image} />
+              )}
+              <p className={styles.redirectLinkWrapper}>
+                Don&apos;t have an account?&nbsp;
+                <Link className="link" to={REGISTER_ROUTE}>
+                  Sign up now!
+                </Link>
+              </p>
+            </div>
+          </Grid>
+          <Grid item className={styles.formWrapper} md={6}>
             {isEmailSent ? (
-              <CheckEmailIcon className={styles.image} />
+              <div className="text-center">
+                <h1 className={`text-center color-accent ${styles.heading}`}>Recover password email sent</h1>
+                <div className="text-center">
+                  <p className="color-text">Check you email address in order to proceed with your password recovery.</p>
+                  <br />
+                  <Button className={styles.submitAction} text="Go back" type="button" onClick={handleGoBackClick} />
+                </div>
+              </div>
             ) : (
-              <RecoverPasswordIcon className={styles.image} />
+              <>
+                <h1 className={`text-center color-accent ${styles.heading}`}>Recover password</h1>
+                <br />
+                <Form
+                  onSubmit={onSubmit}
+                  render={({ handleSubmit, form, submitting, pristine }) => (
+                    <form onSubmit={handleSubmit} className={`full-width ${styles.form}`}>
+                      <TextInputField
+                        title="Email"
+                        name="email"
+                        placeholder="Enter email..."
+                        required
+                        fieldProps={{
+                          validate: composeValidators(notEmpty('Please, enter your email!')),
+                        }}
+                      />
+                      <Button
+                        className={styles.submitAction}
+                        disabled={submitting || pristine}
+                        text="Send recovery link"
+                        type="submit"
+                      />
+                    </form>
+                  )}
+                />
+              </>
             )}
-            <p className={styles.redirectLinkWrapper}>
+            <p className={styles.redirectLinkWrapperMobile}>
               Don&apos;t have an account?&nbsp;
               <Link className="link" to={REGISTER_ROUTE}>
                 Sign up now!
               </Link>
             </p>
-          </div>
+          </Grid>
         </Grid>
-        <Grid item className={styles.formWrapper} md={6}>
-          {isEmailSent ? (
-            <div className="text-center">
-              <h1 className={`text-center color-accent ${styles.heading}`}>Recover password email sent</h1>
-              <div className="text-center">
-                <p className="color-text">Check you email address in order to proceed with your password recovery.</p>
-                <br />
-                <Button className={styles.submitAction} text="Go back" type="button" onClick={handleGoBackClick} />
-              </div>
-            </div>
-          ) : (
-            <>
-              <h1 className={`text-center color-accent ${styles.heading}`}>Recover password</h1>
-              <br />
-              <Form
-                onSubmit={onSubmit}
-                render={({ handleSubmit, form, submitting, pristine }) => (
-                  <form onSubmit={handleSubmit} className={`full-width ${styles.form}`}>
-                    <TextInputField
-                      title="Email"
-                      name="email"
-                      placeholder="Enter email..."
-                      required
-                      fieldProps={{
-                        validate: composeValidators(notEmpty('Please, enter your email!')),
-                      }}
-                    />
-                    <Button
-                      className={styles.submitAction}
-                      disabled={submitting || pristine}
-                      text="Send recovery link"
-                      type="submit"
-                    />
-                  </form>
-                )}
-              />
-            </>
-          )}
-          <p className={styles.redirectLinkWrapperMobile}>
-            Don&apos;t have an account?&nbsp;
-            <Link className="link" to={REGISTER_ROUTE}>
-              Sign up now!
-            </Link>
-          </p>
-        </Grid>
-      </Grid>
-    </div>
+      </div>
+    </>
   );
 };
 

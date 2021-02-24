@@ -46,7 +46,7 @@ const FormTest: FunctionComponent = () => {
   return (
     <>
       <Navigation />
-      <div
+      <main
         style={{
           display: 'flex',
           flexDirection: 'column',
@@ -171,7 +171,7 @@ const FormTest: FunctionComponent = () => {
             )}
           />
         </Grid>
-      </div>
+      </main>
     </>
   );
 };

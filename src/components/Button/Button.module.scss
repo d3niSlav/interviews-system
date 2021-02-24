@@ -8,7 +8,8 @@
   border-radius: 2px;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  transition: border 0.3s, background-color 0.3s, color 0.3s;
+  transition: border 0.3s, background-color 0.3s, color 0.3s, opacity 0.2s;
+  opacity: 1;
   cursor: pointer;
 
   &.small {
@@ -47,9 +48,7 @@
   }
 
   &[disabled] {
-    color: lighten(#595c63, 30%);
-    background-color: #3d3c45;
-    border: 1px solid #595c63;
+    opacity: 40%;
     cursor: not-allowed;
   }
 }

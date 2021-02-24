@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
 
@@ -13,7 +14,9 @@ import './assets/styles/index.scss';
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <App />
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
     </Router>
   </Provider>,
   document.getElementById('root'),

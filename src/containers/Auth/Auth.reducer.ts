@@ -1,7 +1,7 @@
 import jwtDecode from 'jwt-decode';
 
 import { UserDto } from './Auth.dtos';
-import { AuthActionTypes, AuthState, INITIALIZE_USER, SET_USER_FROM_TOKEN } from './Auth.types';
+import { AuthActionTypes, AuthState, INITIALIZE_USER, LOG_OUT_USER, SET_USER_FROM_TOKEN } from './Auth.types';
 import { getJWTToken } from '../../shared/web-storage';
 
 const initialState: AuthState = {
@@ -30,6 +30,11 @@ const authReducer = (state = initialState, action: AuthActionTypes): AuthState =
       return {
         ...state,
         user,
+      };
+    }
+    case LOG_OUT_USER: {
+      return {
+        ...initialState,
       };
     }
     default: {
