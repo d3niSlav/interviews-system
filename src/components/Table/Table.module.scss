@@ -1,0 +1,38 @@
+@import 'src/assets/styles/colors';
+
+.table {
+  width: 100%;
+  border-radius: 3px;
+  border-collapse: collapse;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.14);
+}
+
+.header {
+  padding: 8px;
+  line-height: 1.33;
+  color: $text-color;
+  font-size: 0.8rem;
+  font-weight: 300;
+  text-align: left;
+  background: $background-color;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.08);
+}
+
+.row {
+  padding: 10px;
+  color: $text-color;
+  font-size: 0.8rem;
+  font-weight: 300;
+  background-color: $background-contrast-color;
+
+  &:nth-child(2n) {
+    background-color: $background-color;
+  }
+}
+
+.emptyRow {
+  display: flex;
+  flex: 1 0 auto;
+  justify-content: center;
+  min-width: 0;
+}

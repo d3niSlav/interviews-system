@@ -31,3 +31,10 @@
     text-decoration: underline;
   }
 }
+
+.paper {
+  padding: 20px 15px;
+  background-color: $background-contrast-color;
+  border-radius: 3px;
+  box-shadow: 0 0 10px 0 rgba(102, 102, 102, 0.1);
+}

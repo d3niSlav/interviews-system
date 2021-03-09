@@ -1,0 +1,24 @@
+@import '../../../../assets/styles/colors';
+
+.arrows {
+  height: 12px;
+  margin-left: 4px;
+
+  polygon {
+    fill: $background-contrast-color;
+    transition: fill 0.2s;
+  }
+}
+
+.active {
+  color: $accent-color-dark;
+  font-weight: 400;
+}
+
+.ascending polygon[id='arrow-up'] {
+  fill: $accent-color;
+}
+
+.descending polygon[id='arrow-down'] {
+  fill: $accent-color;
+}

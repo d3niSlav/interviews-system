@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import { ReactComponent as DashboardIcon } from '../../assets/images/svg/dashboard.svg';
+import { ReactComponent as ListIcon } from '../../assets/images/svg/list.svg';
 import { ReactComponent as LogoutIcon } from '../../assets/images/svg/logout.svg';
 import { ReactComponent as SettingsIcon } from '../../assets/images/svg/settings.svg';
 import { logOutUserAction } from '../../containers/Auth';
@@ -21,9 +22,14 @@ const Navigation: FunctionComponent = () => {
       <nav className={styles.navContent}>
         <ul className={styles.mainNavigation}>
           <li>
-            <NavLink to="/" className={styles.navLinkBox} activeClassName={styles.active} aria-label="Home">
+            <NavLink to="/" className={styles.navLinkBox} exact activeClassName={styles.active} aria-label="Home">
               <div className={styles.iconWrapper}>
                 <DashboardIcon />
+              </div>
+            </NavLink>
+            <NavLink to="/table-list" className={styles.navLinkBox} activeClassName={styles.active} aria-label="Home">
+              <div className={styles.iconWrapper}>
+                <ListIcon />
               </div>
             </NavLink>
           </li>

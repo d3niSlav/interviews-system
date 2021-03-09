@@ -24,6 +24,7 @@ import {
   RESET_PASSWORD_ROUTE,
   SERVICE_UNAVAILABLE_ROUTE,
 } from '../../shared/constants';
+import TableView from './TableView';
 
 const App: FunctionComponent = () => {
   const dispatch = useDispatch();
@@ -49,6 +50,13 @@ const App: FunctionComponent = () => {
           exact
           isAuthenticated={isAuthenticated}
           path={HOME_ROUTE}
+        />
+        <ProtectedRoute
+          authenticationPath={LOGIN_ROUTE}
+          component={TableView}
+          exact
+          isAuthenticated={isAuthenticated}
+          path={'/table-list'}
         />
         <Redirect from="*" to={NOT_FOUND_ROUTE} />
       </Switch>
