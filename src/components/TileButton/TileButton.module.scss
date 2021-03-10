@@ -1,0 +1,25 @@
+@import 'src/assets/styles/colors';
+
+.tile {
+  display: inline-block;
+  vertical-align: top;
+  width: 18vh;
+  height: 18vh;
+  max-width: 150px;
+  max-height: 150px;
+  margin: 10px;
+  padding: 25px;
+  border-radius: 5px;
+  border: 0;
+  cursor: pointer;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.14);
+
+  &:hover {
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+  }
+}
+
+.image {
+  max-width: 100%;
+  max-height: 100%;
+}
