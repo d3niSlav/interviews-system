@@ -127,6 +127,7 @@
   background-color: $background-contrast-color;
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
+  transition: bottom 0.3s;
 
   .iconWrapper {
     padding: 3px;
@@ -142,6 +143,9 @@
 .navContent {
   width: 100%;
   height: 100%;
+  opacity: 1;
+  pointer-events: all;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .mainNavigation,
@@ -179,5 +183,16 @@
       opacity: 1;
       pointer-events: all;
     }
+  }
+}
+
+.collapsed {
+  bottom: calc(100% - 50px);
+  border-bottom-left-radius: 6px;
+
+  .navContent {
+    opacity: 0;
+    pointer-events: none;
+    transition: none;
   }
 }

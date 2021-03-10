@@ -1,20 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Switch } from 'react-router';
 import { Redirect, Route } from 'react-router-dom';
 
-import FormTest from './FormTest';
-import {
-  initializeUserAction,
-  LoginPage,
-  RecoverPage,
-  RegisterPage,
-  ResetPage,
-  selectIsUserAuthenticated,
-} from '../Auth';
+import { initializeUserAction, LoginPage, RecoverPage, RegisterPage, ResetPage } from '../Auth';
 import { NotFoundPage, ServiceUnavailablePage } from '../Errors';
-import ProtectedRoute from '../../components/ProtectedRoute';
 import {
   HOME_ROUTE,
   LOGIN_ROUTE,
@@ -24,13 +15,11 @@ import {
   RESET_PASSWORD_ROUTE,
   SERVICE_UNAVAILABLE_ROUTE,
 } from '../../shared/constants';
-import TableView from './TableView';
+import Layout from './Layout';
 
 const App: FunctionComponent = () => {
   const dispatch = useDispatch();
   dispatch(initializeUserAction());
-
-  const isAuthenticated = useSelector(selectIsUserAuthenticated);
 
   return (
     <>
@@ -44,20 +33,7 @@ const App: FunctionComponent = () => {
         <Route path={RECOVER_PASSWORD_ROUTE} component={RecoverPage} />
         <Route path={REGISTER_ROUTE} component={RegisterPage} />
         <Route path={RESET_PASSWORD_ROUTE} component={ResetPage} />
-        <ProtectedRoute
-          authenticationPath={LOGIN_ROUTE}
-          component={FormTest}
-          exact
-          isAuthenticated={isAuthenticated}
-          path={HOME_ROUTE}
-        />
-        <ProtectedRoute
-          authenticationPath={LOGIN_ROUTE}
-          component={TableView}
-          exact
-          isAuthenticated={isAuthenticated}
-          path={'/table-list'}
-        />
+        <Route path={HOME_ROUTE} component={Layout} />
         <Redirect from="*" to={NOT_FOUND_ROUTE} />
       </Switch>
     </>

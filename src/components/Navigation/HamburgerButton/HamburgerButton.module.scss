@@ -1,0 +1,77 @@
+@import 'src/assets/styles/colors';
+
+.line {
+  --length: 24;
+  --offset: -38;
+
+  fill: none;
+  stroke: $accent-color-dark;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: var(--length) var(--total-length);
+  stroke-dashoffset: var(--offset);
+  transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.hamburgerMenu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 50px;
+  height: 50px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  outline: none;
+
+  > * {
+    position: relative;
+  }
+}
+
+.arrow {
+  .lineOne,
+  .lineThree {
+    --total-length: 126.38166809082031;
+  }
+
+  .lineTwo {
+    --total-length: 80;
+  }
+}
+
+.cross {
+  .lineOne,
+  .lineThree {
+    --total-length: 126.64183044433594;
+  }
+
+  .lineTwo {
+    --total-length: 70;
+  }
+}
+
+.active {
+  &.arrow {
+    .lineOne,
+    .lineThree {
+      --length: 8.602325267;
+      --offset: -109.1770175568;
+    }
+  }
+
+  &.cross {
+    .lineOne,
+    .lineThree {
+      --length: 22.627416998;
+      --offset: -94.1149185097;
+    }
+
+    .lineTwo {
+      --length: 0;
+      --offset: -50;
+    }
+  }
+}
