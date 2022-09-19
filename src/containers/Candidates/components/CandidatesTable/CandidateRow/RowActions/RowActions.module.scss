@@ -1,0 +1,60 @@
+@import '../../../../../../assets/styles/colors';
+
+.rowActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  @media (min-width: 992px) and (max-width: 1339px) {
+    display: grid;
+    grid-template-columns:
+      [edit] 20px
+      [delete] 30px
+      [download] 30px;
+    grid-template-rows: [small-actions] 24px [main-action] 24px;
+  }
+
+  svg {
+    filter: grayscale(100%);
+    opacity: 75%;
+    cursor: pointer;
+    fill: $accent-color-dark;
+    transition: opacity 0.2s, filter 0.2s;
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+
+    &:hover {
+      opacity: 100%;
+      filter: grayscale(0);
+    }
+  }
+}
+
+.section {
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
+
+  @media (min-width: 992px) and (max-width: 1339px) {
+    &:not(:last-child) {
+      margin: 0;
+    }
+
+    text-align: right;
+    grid-column: edit / span 3;
+    grid-row: main-action;
+
+    &:first-child {
+      grid-column: edit / span 2;
+      grid-row: small-actions;
+    }
+
+    &:last-child {
+      grid-column: download;
+      grid-row: small-actions;
+    }
+  }
+}

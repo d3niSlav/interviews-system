@@ -1,0 +1,358 @@
+@import '../../../../../assets/styles/colors';
+
+// ROW styles
+.tableRow {
+  position: relative;
+  padding: 6px 10px;
+  font-size: 0;
+  margin-bottom: 8px;
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px 0 rgba(102, 102, 102, 0.4);
+  transition: max-height 0.2s ease-in-out, box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: 0 2px 10px 0 rgba($accent-color-dark, 0.5);
+  }
+
+  @media (min-width: 992px) {
+    min-height: 64px;
+    max-height: 64px;
+    padding: 6px 0 6px 10px;
+  }
+
+  @media (min-width: 1340px) {
+    min-height: 42px;
+    max-height: 42px;
+  }
+}
+
+.rowContent {
+  height: 100%;
+}
+
+// Basic Information styles
+.basicInformation {
+  position: relative;
+  z-index: 10;
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+  transition: width 0.2s ease-in-out, border-right-color 0.2s;
+  background: #ffffff;
+  cursor: pointer;
+
+  @media (min-width: 992px) {
+    width: 240px;
+    border-right: 2px solid #dbdde4;
+  }
+}
+
+.rowSelect {
+  display: inline-block;
+  vertical-align: top;
+  padding-top: 2px;
+}
+
+.mainColumn {
+  display: inline-block;
+  margin: 2px 15px;
+  transition: margin-left 0.2s;
+}
+
+.avatarWrapper {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 3px 0;
+  margin-right: 2px;
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  color: #ffffff;
+  font-family: 'Rubik', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: #83caff;
+  border: 1px solid $accent-color;
+  border-radius: 50%;
+  transition: width 0.2s, height 0.2s, font-size 0.2s;
+}
+
+.title {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: $accent-color;
+  transition: color 1s, font 0.2s;
+}
+
+.status {
+  display: inline-block;
+  padding: 4px;
+  line-height: 1;
+  color: #767fd7;
+  font-size: 12px;
+  background: #ebedff;
+  border-radius: 3px;
+  text-transform: capitalize;
+}
+
+.contactInfoBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px 4px;
+  margin: 5px auto 15px;
+  height: 100%;
+  border-radius: 4px;
+  background: #f7f9fb;
+
+  @media (min-width: 992px) {
+    width: 100px;
+    margin: 0 40px 0 0;
+  }
+
+  @media (min-width: 1340px) {
+    margin: 0;
+  }
+}
+
+.rowDetails {
+  padding: 15px 0 2px;
+  transition: width 0.2s ease-in-out;
+  opacity: 1;
+
+  @media (min-width: 992px) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc(100% - 250px);
+    padding: 8px 10px;
+  }
+
+  .rowDetailsContent {
+    font-family: 'Rubik', sans-serif;
+    font-size: 0.7rem;
+
+    @media (min-width: 992px) {
+      display: grid;
+      align-items: center;
+      grid-template-columns:
+        [one] auto
+        [two] 70px
+        [tree] 80px
+        [four] 80px;
+      grid-template-rows: [top] 24px [bottom] 24px;
+    }
+
+    @media (min-width: 1100px) {
+      // TODO
+      grid-template-columns:
+        [one] auto
+        [two] 100px
+        [tree] 100px
+        [four] 80px;
+      grid-template-rows: [top] 24px [bottom] 24px;
+    }
+
+    @media (min-width: 1340px) {
+      grid-template-columns:
+        [contacts] 110px
+        [job] auto
+        [seniority] 72px
+        [social] 180px
+        [status] 90px
+        [actions] 150px;
+      grid-template-rows: [main] 26px;
+    }
+
+    @media (min-width: 1400px) {
+      grid-template-columns:
+        [contacts] 130px
+        [job] auto
+        [seniority] 90px
+        [social] 200px
+        [status] 100px
+        [actions] 150px;
+    }
+  }
+}
+
+.contacts {
+  @media (min-width: 992px) {
+    grid-column: two / span 2;
+    grid-row: bottom;
+  }
+
+  @media (min-width: 1340px) {
+    grid-column: contacts;
+    grid-row: main;
+  }
+}
+
+.jobTitle {
+  display: inline-block;
+  width: (100% / 3 * 2);
+
+  @media (min-width: 992px) {
+    width: 100%;
+    padding-right: 10px;
+    grid-column: one;
+    grid-row: top;
+  }
+
+  @media (min-width: 1340px) {
+    grid-column: job;
+    grid-row: main;
+  }
+}
+
+.seniority {
+  display: inline-block;
+  width: (100% / 3);
+  text-align: right;
+
+  @media (min-width: 992px) {
+    width: 100%;
+    text-align: left;
+    grid-column: two;
+    grid-row: top;
+  }
+
+  @media (min-width: 1340px) {
+    grid-column: seniority;
+    grid-row: main;
+  }
+}
+
+.socialMediaBox {
+  margin: 10px auto;
+
+  @media (min-width: 992px) {
+    width: 170px;
+    margin: 0;
+    grid-column: one;
+    grid-row: bottom;
+  }
+
+  @media (min-width: 1340px) {
+    grid-column: social;
+    grid-row: main;
+  }
+}
+
+.statusBox {
+  margin-bottom: 10px;
+
+  @media (min-width: 992px) {
+    margin-bottom: 0;
+    grid-column: tree;
+    grid-row: top;
+  }
+
+  @media (min-width: 1340px) {
+    grid-column: status;
+    grid-row: main;
+  }
+
+  .statusLabel {
+    margin-right: 10px;
+
+    @media (min-width: 992px) {
+      display: none;
+    }
+  }
+}
+
+.actions {
+  @media (min-width: 992px) {
+    grid-column: four;
+    grid-row: top / span 2;
+  }
+
+  @media (min-width: 1340px) {
+    grid-column: actions;
+    grid-row: main;
+  }
+}
+
+.details {
+  opacity: 0;
+  pointer-events: none;
+  width: 100%;
+  min-height: 0;
+  transition: min-height 0.2s ease;
+  font-size: 16px;
+}
+
+.tableRow.expanded {
+  max-height: 1000px;
+
+  .mainColumn {
+    margin: 5px 0 0 5px;
+  }
+
+  .avatar {
+    width: 75px;
+    height: 75px;
+    font-size: 2rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #23232a;
+  }
+
+  .basicInformation {
+    width: 100%;
+    border-right-color: #ffffff;
+  }
+
+  .rowSelect {
+    vertical-align: top;
+  }
+
+  .rowDetails {
+    opacity: 0;
+  }
+
+  .details {
+    transition: min-height 0.2s ease, opacity 0.2s;
+    opacity: 1;
+    pointer-events: all;
+    z-index: 10;
+    position: relative;
+    min-height: 200px;
+  }
+}
+
+.workPosition {
+  position: absolute;
+  top: -25px;
+  left: 120px;
+}
+
+.positionWrapper {
+  position: absolute;
+  top: -60px;
+  right: 50px;
+
+  .position {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .positionTitle {
+    font-size: 14px;
+    color: $accent-color;
+  }
+}

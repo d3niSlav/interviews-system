@@ -1,0 +1,13 @@
+@import 'src/assets/styles/colors';
+
+.tableRow {
+  position: relative;
+  font-size: 0.8rem;
+  font-weight: 400;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px 0 rgba(102, 102, 102, 0.4);
+
+  &:hover {
+    background-color: #dbdde4;
+  }
+}

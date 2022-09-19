@@ -1,0 +1,55 @@
+@import '../../../../assets/styles/colors';
+
+.pagesContainer {
+  display: inline-block;
+  height: 25px;
+  margin: 15px 6px 0;
+  padding: 0 10px;
+  border-radius: 15px;
+  background-color: $background-color;
+}
+
+.arrowButton {
+  margin-top: 15px;
+  border-radius: 15px;
+}
+
+.pageButton {
+  margin: 0 2px;
+  border-radius: 3px;
+}
+
+.separator {
+  display: inline-block;
+  width: 25px;
+  margin: 0 2px;
+  color: $text-color;
+  text-align: center;
+}
+
+.arrowButton,
+.pageButton {
+  width: 25px;
+  height: 25px;
+  color: $text-color;
+  background-color: $background-color;
+  border: 0;
+  cursor: pointer;
+  transition: color 0.2s, background-color 0.2s;
+
+  &:disabled {
+    background-color: lighten($background-color, 0.3);
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    color: $background-color;
+    background-color: $accent-color-dark;
+  }
+
+  &.active {
+    color: $background-color;
+    background-color: $accent-color;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.14);
+  }
+}

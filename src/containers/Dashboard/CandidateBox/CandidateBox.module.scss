@@ -1,0 +1,45 @@
+@import 'src/assets/styles/colors';
+
+.candidateBox {
+  margin-bottom: 15px;
+  padding: 12px 14px 10px;
+  border-radius: 5px;
+  background: white;
+  border: 2px solid $background-contrast-color;
+
+  &.active {
+    border-color: #5a66f1;
+  }
+}
+
+.name {
+  color: #32364c;
+  font-family: 'Rubik', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.position {
+  margin-bottom: 2px;
+  color: #8d8f99;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.jobType {
+  display: inline-block;
+  padding: 4px;
+  line-height: 1;
+  color: #767fd7;
+  font-family: 'Rubik', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  background: #ebedff;
+  border-radius: 2px;
+}
+
+.time {
+  margin-top: 6px;
+  color: #8d8f99;
+  font-size: 12px;
+}

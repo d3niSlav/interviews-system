@@ -1,0 +1,15 @@
+.rowHeader {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-right: 10px;
+  font-size: 0.75rem;
+
+  &:first-child {
+    margin-right: 15px;
+  }
+
+  &.sortable {
+    cursor: pointer;
+  }
+}

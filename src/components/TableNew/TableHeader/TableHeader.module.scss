@@ -1,0 +1,49 @@
+@import '../../../assets/styles/colors';
+
+.arrows {
+  height: 12px;
+  margin-left: 4px;
+
+  polygon {
+    fill: $background-contrast-color;
+    transition: fill 0.2s;
+  }
+}
+
+.active {
+  color: $accent-color-dark;
+  font-weight: 400;
+}
+
+.ascending polygon[id='arrow-up'] {
+  fill: $accent-color;
+}
+
+.descending polygon[id='arrow-down'] {
+  fill: $accent-color;
+}
+
+.tableHeaderCell {
+  padding-left: 8px;
+  padding-right: 20px;
+  padding-bottom: 6px;
+  vertical-align: bottom;
+  border-bottom: 2px solid #dbdde4;
+  text-align: left;
+}
+
+.label {
+  font-size: 0.8rem;
+  text-align: left;
+}
+
+.sortingButton {
+  outline: none;
+  background: none;
+  border: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  cursor: pointer;
+}

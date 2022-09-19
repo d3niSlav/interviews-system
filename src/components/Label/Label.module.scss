@@ -1,0 +1,59 @@
+@import 'src/assets/styles/colors';
+
+.text,
+.title {
+  margin: 0;
+  padding: 0 7px;
+  height: 18px;
+  color: $text-color;
+  font-size: 0.8rem;
+}
+
+.title {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.text {
+  margin-top: 4px;
+}
+
+.errorMessage {
+  position: relative;
+  width: 100%;
+  min-height: 20px;
+  margin: 2px 0 0;
+  padding: 0 7px;
+  line-height: 1.2;
+  color: #ff3e3e;
+  font-size: 0.75rem;
+  text-align: left;
+  word-break: break-word;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.requiredIndicator {
+  color: #ff3e3e;
+}
+
+.label {
+  display: inline-block;
+  text-align: left;
+
+  &.fullWidth {
+    display: block;
+    width: 100%;
+  }
+
+  &.large {
+    .text,
+    .title {
+      font-size: 1rem;
+    }
+  }
+}
+
+.plainText {
+  padding: 0 7px;
+}

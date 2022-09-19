@@ -1,0 +1,89 @@
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media (min-width: 576px) {
+    max-width: 540px;
+  }
+
+  @media (min-width: 768px) {
+    max-width: 720px;
+  }
+
+  @media (min-width: 992px) {
+    max-width: 960px;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 1140px;
+  }
+
+  @media (min-width: 1400px) {
+    max-width: 1360px;
+  }
+
+  .container {
+    padding: 0;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.col {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+$breakpoints: (
+  '': 0,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+);
+
+$sizes: (
+  1: 8.3333333333%,
+  2: 16.6666666667%,
+  3: 25%,
+  4: 33.3333333333%,
+  5: 41.6666666667%,
+  6: 50%,
+  7: 58.3333333333%,
+  8: 66.6666666667%,
+  9: 75%,
+  10: 83.3333333333%,
+  11: 91.6666666667%,
+  12: 100%,
+);
+
+@mixin grid-columns($breakpoint: '') {
+  .col#{$breakpoint} {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+  }
+
+  @each $size, $value in $sizes {
+    .col#{$breakpoint}#{$size} {
+      flex: 0 0 $value;
+      max-width: $value;
+    }
+  }
+}
+
+@each $breakpoint, $width in $breakpoints {
+  @media (min-width: #{$width}) {
+    @include grid-columns($breakpoint);
+  }
+}

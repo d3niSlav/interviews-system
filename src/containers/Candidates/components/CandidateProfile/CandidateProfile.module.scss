@@ -1,0 +1,63 @@
+@import 'src/assets/styles/colors';
+
+.candidatePreview {
+  width: 1000px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 2px solid $background-contrast-color;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.imageWrapper {
+  width: 100%;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+}
+
+.progress {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  color: #a5a7af;
+  font-family: 'Rubik', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+
+  .active {
+    color: #32364c;
+    font-weight: 500;
+  }
+}
+
+.name {
+  margin: 35px 0 20px;
+  color: #32364c;
+  font-family: 'Rubik', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.description {
+  margin-bottom: 15px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 16px;
+  text-align: justify;
+}
+
+.skillPill {
+  display: inline-block;
+  padding: 2px;
+  background: #f9f9f9;
+  border: 1px solid #efefef;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  border-radius: 2px;
+}

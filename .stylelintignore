@@ -1,0 +1,7 @@
+**/*.js
+build/*
+coverage/*
+dist/*
+node_modules/*
+public/*
+src/assets/styles/_date-picker.scss

@@ -1,0 +1,9 @@
+.pageContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 0 0 0 52px;
+  background: #f7f9fb;
+  transition: padding 0.2s;
+}

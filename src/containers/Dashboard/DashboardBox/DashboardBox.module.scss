@@ -1,0 +1,45 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px 16px 16px;
+  margin: 20px auto 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background-color: #ffffff;
+}
+
+.indicator {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  height: 64px;
+  top: -30px;
+  padding: 8px;
+  background-image: linear-gradient(195deg, #1991eb, #223263);
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px rgba(64, 64, 64, .4) !important;
+  border-radius: 15px;
+  text-align: center;
+
+  svg {
+    width: 40px;
+    height: 40px;
+
+    path {
+      fill: #ffffff;
+    }
+  }
+}
+
+.textWrapper {
+  text-align: right;
+  font-size: .875rem!important;
+}
+
+.value {
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.375;
+}

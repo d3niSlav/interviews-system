@@ -1,0 +1,41 @@
+.text-center {
+  text-align: center;
+}
+
+.full-width {
+  width: 100%;
+  max-width: 100%;
+}
+
+.flex-center {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.color-accent {
+  color: $accent-color;
+}
+
+.color-text {
+  color: $text-color;
+}
+
+.link {
+  color: $accent-color;
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $accent-color-dark;
+    text-decoration: underline;
+  }
+}
+
+.paper {
+  padding: 20px 15px;
+  background-color: $background-contrast-color;
+  border-radius: 3px;
+  box-shadow: 0 0 10px 0 rgba(102, 102, 102, 0.1);
+}
